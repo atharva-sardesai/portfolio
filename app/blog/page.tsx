@@ -28,11 +28,20 @@ export async function generateStaticParams() {
 
 async function getPosts(): Promise<Post[]> {
   try {
-    const response = await import('@/public/medium-posts.json')
-    return response.default.posts
+    // Replace with your API Gateway URL once created
+    const response = await fetch(process.env.NEXT_PUBLIC_API_GATEWAY_URL || '', {
+      next: { revalidate: 3600 } // Cache for 1 hour
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch posts');
+    }
+
+    const data = await response.json();
+    return data.posts;
   } catch (error) {
-    console.error('Error loading posts:', error)
-    return []
+    console.error('Error loading posts:', error);
+    return [];
   }
 }
 
