@@ -27,14 +27,22 @@ function extractImageUrl(content: string | undefined, imageUrl: string | undefin
     const match = guid.match(guidMatch);
     if (match && match[1]) {
       const articleId = match[1];
-      // Try multiple Medium CDN formats
-      const possibleUrls = [
-        `https://miro.medium.com/v2/resize:fit:1400/${articleId}`,
-        `https://cdn-images-1.medium.com/max/1024/1*${articleId}.jpeg`,
-        `https://miro.medium.com/max/1400/${articleId}`
-      ];
-      console.log('Generated Medium CDN URLs:', possibleUrls);
-      return possibleUrls[0]; // Use the first format as default
+      // Use the most reliable Medium image URL format
+      const imageUrl = `https://miro.medium.com/v2/format:webp/1*${articleId}`;
+      console.log('Generated Medium CDN URL:', imageUrl);
+      return imageUrl;
+    }
+  }
+
+  // Extract article ID from link as fallback
+  if (link) {
+    const linkMatch = /medium\.com\/.*?([a-f0-9]{12,})(?:\?|$)/;
+    const match = link.match(linkMatch);
+    if (match && match[1]) {
+      const articleId = match[1];
+      const imageUrl = `https://miro.medium.com/v2/format:webp/1*${articleId}`;
+      console.log('Generated Medium CDN URL from link:', imageUrl);
+      return imageUrl;
     }
   }
 
