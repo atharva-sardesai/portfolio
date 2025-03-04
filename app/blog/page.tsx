@@ -2,7 +2,6 @@ import Link from "next/link"
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import mediumPosts from '@/public/medium-posts.json'
 
 interface Post {
   title: string
@@ -29,27 +28,16 @@ export async function generateStaticParams() {
 
 async function getPosts(): Promise<Post[]> {
   try {
-    console.log('Fetching posts from API Gateway...')
-    // Replace this URL with your API Gateway endpoint
-    const response = await fetch('YOUR_API_GATEWAY_URL', {
-      next: { revalidate: 3600 } // Revalidate every hour
-    })
-    
-    if (!response.ok) {
-      throw new Error('Failed to fetch posts')
-    }
-
-    const data = await response.json()
-    console.log(`Found ${data.posts.length} posts`)
-    return data.posts
+    const response = await import('@/public/medium-posts.json')
+    return response.default.posts
   } catch (error) {
-    console.error('Error fetching posts:', error instanceof Error ? error.message : error)
+    console.error('Error loading posts:', error)
     return []
   }
 }
 
-export default function BlogPage() {
-  const posts = mediumPosts.posts as Post[]
+export default async function BlogPage() {
+  const posts = await getPosts()
 
   return (
     <div className="container py-10">

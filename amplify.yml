@@ -4,9 +4,45 @@ frontend:
     preBuild:
       commands:
         - npm ci
-        - cd lambda/fetch-medium-posts
+        # Create a temporary directory for the Medium fetcher
+        - mkdir -p temp/medium-fetcher
+        - echo '{"dependencies":{"rss-parser":"^3.13.0"}}' > temp/medium-fetcher/package.json
+        - cd temp/medium-fetcher
         - npm install
-        - node -e "require('./index.js').handler().then(result => { if (result.statusCode !== 200) throw new Error('Failed to fetch posts'); })"
+        # Create the fetch script
+        - |
+          echo 'const Parser = require("rss-parser");
+          const fs = require("fs").promises;
+          const path = require("path");
+          
+          async function fetchPosts() {
+            try {
+              console.log("Fetching posts from Medium...");
+              const parser = new Parser();
+              const feed = await parser.parseURL("https://medium.com/feed/@cyberwithatharva");
+              
+              const posts = feed.items
+                .filter(item => item.title && item.content && item.pubDate && item.link && item.guid)
+                .map(item => ({
+                  title: item.title,
+                  content: item.content,
+                  pubDate: item.pubDate,
+                  link: item.link,
+                  guid: item.guid,
+                  lastUpdated: new Date().toISOString()
+                }));
+              
+              await fs.writeFile("../../public/medium-posts.json", JSON.stringify({ posts }, null, 2));
+              console.log("Posts updated successfully");
+            } catch (error) {
+              console.error("Error:", error);
+              process.exit(1);
+            }
+          }
+          
+          fetchPosts();' > fetch-posts.js
+        # Run the fetch script
+        - node fetch-posts.js
         - cd ../..
     build:
       commands:
