@@ -4,6 +4,10 @@ frontend:
     preBuild:
       commands:
         - npm ci
+        - cd lambda/fetch-medium-posts
+        - npm install
+        - node -e "require('./index.js').handler().then(result => { if (result.statusCode !== 200) throw new Error('Failed to fetch posts'); })"
+        - cd ../..
     build:
       commands:
         - npm run build

@@ -2,7 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import Parser from 'rss-parser'
+import mediumPosts from '@/public/medium-posts.json'
 
 interface Post {
   title: string
@@ -29,35 +29,27 @@ export async function generateStaticParams() {
 
 async function getPosts(): Promise<Post[]> {
   try {
-    console.log('Fetching posts from Medium...')
-    const parser = new Parser()
-    const feed = await parser.parseURL('https://medium.com/feed/@cyberwithatharva')
-    console.log('Feed fetched successfully:', feed.title)
-    const filteredItems = feed.items
-      .filter((item): item is Parser.Item & Required<Pick<Parser.Item, 'title' | 'content' | 'pubDate' | 'link' | 'guid'>> => {
-        const isValid = !!item.title && !!item.content && !!item.pubDate && !!item.link && !!item.guid
-        if (!isValid) {
-          console.log('Invalid item:', item)
-        }
-        return isValid
-      })
-    console.log(`Found ${filteredItems.length} valid posts`)
-    return filteredItems.map(item => ({
-      title: item.title,
-      content: item.content,
-      pubDate: item.pubDate,
-      link: item.link,
-      guid: item.guid,
-    }))
+    console.log('Fetching posts from API Gateway...')
+    // Replace this URL with your API Gateway endpoint
+    const response = await fetch('YOUR_API_GATEWAY_URL', {
+      next: { revalidate: 3600 } // Revalidate every hour
+    })
+    
+    if (!response.ok) {
+      throw new Error('Failed to fetch posts')
+    }
+
+    const data = await response.json()
+    console.log(`Found ${data.posts.length} posts`)
+    return data.posts
   } catch (error) {
     console.error('Error fetching posts:', error instanceof Error ? error.message : error)
-    console.error('Error details:', error)
     return []
   }
 }
 
-export default async function BlogPage() {
-  const posts = await getPosts()
+export default function BlogPage() {
+  const posts = mediumPosts.posts as Post[]
 
   return (
     <div className="container py-10">
