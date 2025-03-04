@@ -1,52 +1,41 @@
-import type React from "react"
-import "@/styles/globals.css"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "@/components/ui/toaster"
 import Navbar from "@/components/Navbar"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Cyber Security Portfolio",
-  description: "Portfolio showcasing cybersecurity expertise and projects",
-  keywords: [
-    "Cybersecurity",
-    "VAPT",
-    "Cloud Security",
-    "DevSecOps",
-    "LLM Security",
-    "Penetration Testing",
-    "Security Portfolio",
-    "Atharva",
-  ],
-    generator: 'v0.dev'
+  title: "Cyber with Atharva",
+  description: "Cybersecurity Portfolio",
+  metadataBase: new URL('https://cyberwithatharva.github.io/cyber-portfolio'),
 }
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-MEASUREMENT_ID');
-            `,
-          }}
+        <link 
+          rel="icon" 
+          href={`${process.env.NEXT_PUBLIC_BASE_URL || ''}/favicon.ico`}
         />
       </head>
       <body className={inter.className}>
-        <Navbar />
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
           {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

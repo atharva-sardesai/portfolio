@@ -27,11 +27,17 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          NEXT_PUBLIC_BASE_URL: https://cyberwithatharva.github.io/cyber-portfolio
+          NEXT_PUBLIC_BASE_URL: /cyber-portfolio
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+
+      # Create .nojekyll file to prevent GitHub Pages from ignoring files that begin with an underscore
+      - name: Add .nojekyll file
+        run: touch ./out/.nojekyll
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./out 
+          publish_dir: ./out
+          # Assign custom domain if you have one
+          # cname: your-custom-domain.com 
