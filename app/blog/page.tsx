@@ -28,21 +28,40 @@ export async function generateStaticParams() {
 
 async function getPosts(): Promise<Post[]> {
   try {
-    console.log('API URL:', process.env.NEXT_PUBLIC_API_GATEWAY_URL);
-    const response = await fetch(process.env.NEXT_PUBLIC_API_GATEWAY_URL || '', {
-      next: { revalidate: 3600 } // Cache for 1 hour
+    const apiUrl = process.env.NEXT_PUBLIC_API_GATEWAY_URL || '';
+    console.log('Attempting to fetch from API URL:', apiUrl);
+    
+    if (!apiUrl) {
+      console.error('API URL is not set in environment variables');
+      return [];
+    }
+
+    const response = await fetch(apiUrl, {
+      next: { revalidate: 3600 }, // Cache for 1 hour
+      headers: {
+        'Accept': 'application/json'
+      }
     });
 
     console.log('Response status:', response.status);
+    console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+    
+    const responseText = await response.text();
+    console.log('Raw response:', responseText);
+
     if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Error response:', errorText);
-      throw new Error('Failed to fetch posts');
+      console.error('Error response:', responseText);
+      throw new Error(`Failed to fetch posts: ${response.status} ${response.statusText}`);
     }
 
-    const data = await response.json();
-    console.log('Fetched posts:', data);
-    return data.posts || [];
+    try {
+      const data = JSON.parse(responseText);
+      console.log('Parsed data:', data);
+      return data.posts || [];
+    } catch (parseError) {
+      console.error('Error parsing JSON:', parseError);
+      return [];
+    }
   } catch (error) {
     console.error('Error loading posts:', error);
     return [];
