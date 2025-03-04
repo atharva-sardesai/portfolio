@@ -21,27 +21,15 @@ function extractImageUrl(content: string | undefined, imageUrl: string | undefin
     return imageUrl;
   }
 
-  // Extract article ID from guid (e.g., "https://medium.com/p/e17a294ca1d2" -> "e17a294ca1d2")
-  if (guid) {
-    const guidMatch = /medium\.com\/p\/([a-f0-9]+)$/;
-    const match = guid.match(guidMatch);
-    if (match && match[1]) {
-      const articleId = match[1];
-      // Use the most reliable Medium image URL format
-      const imageUrl = `https://miro.medium.com/v2/format:webp/1*${articleId}`;
-      console.log('Generated Medium CDN URL:', imageUrl);
-      return imageUrl;
-    }
-  }
-
-  // Extract article ID from link as fallback
+  // Extract article ID from link (e.g., "...medium.com/understanding-cloud-security..." -> "understanding-cloud-security")
   if (link) {
-    const linkMatch = /medium\.com\/.*?([a-f0-9]{12,})(?:\?|$)/;
+    const linkMatch = /medium\.com\/([^\/]+\/)?([^?]+)/;
     const match = link.match(linkMatch);
-    if (match && match[1]) {
-      const articleId = match[1];
-      const imageUrl = `https://miro.medium.com/v2/format:webp/1*${articleId}`;
-      console.log('Generated Medium CDN URL from link:', imageUrl);
+    if (match && match[2]) {
+      const slug = match[2];
+      // Use the article slug to construct the image URL
+      const imageUrl = `https://miro.medium.com/v2/resize:fit:1400/0*${slug}`;
+      console.log('Generated Medium CDN URL from slug:', imageUrl);
       return imageUrl;
     }
   }

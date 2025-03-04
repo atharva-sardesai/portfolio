@@ -4,6 +4,10 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: '*.medium.com',
+      },
+      {
+        protocol: 'https',
         hostname: 'miro.medium.com',
       },
       {
@@ -11,9 +15,9 @@ const nextConfig = {
         hostname: 'images.unsplash.com',
       }
     ],
-    formats: ['image/webp'],
+    unoptimized: true,
     dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    contentSecurityPolicy: "default-src 'self'; img-src 'self' data: https:; script-src 'none'; sandbox;",
   },
   output: 'standalone',
   distDir: '.next',
