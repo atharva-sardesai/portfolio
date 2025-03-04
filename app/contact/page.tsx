@@ -70,19 +70,19 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="container py-10">
-      <div className="space-y-6">
+    <div className="container py-6 md:py-10">
+      <div className="space-y-4 md:space-y-6">
         <div className="space-y-2">
-          <h1 className="text-4xl font-bold tracking-tight">Get in Touch</h1>
-          <p className="text-xl text-muted-foreground">Let's connect and explore opportunities together</p>
+          <h1 className="text-2xl md:text-4xl font-bold tracking-tight">Get in Touch</h1>
+          <p className="text-base md:text-xl text-muted-foreground">Let's connect and explore opportunities together</p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-4 md:gap-6 md:grid-cols-2">
           <Card>
-            <CardContent className="p-6 space-y-4">
+            <CardContent className="p-4 md:p-6 space-y-4">
               <div className="space-y-2">
-                <h2 className="text-2xl font-bold">For Recruiters</h2>
-                <p className="text-muted-foreground">
+                <h2 className="text-xl md:text-2xl font-bold">For Recruiters</h2>
+                <p className="text-sm md:text-base text-muted-foreground">
                   Looking for a cybersecurity professional? Download my resume or connect on LinkedIn.
                 </p>
               </div>
@@ -104,10 +104,10 @@ export default function ContactPage() {
           </Card>
 
           <Card>
-            <CardContent className="p-6 space-y-4">
+            <CardContent className="p-4 md:p-6 space-y-4">
               <div className="space-y-2">
-                <h2 className="text-2xl font-bold">For Collaboration</h2>
-                <p className="text-muted-foreground">
+                <h2 className="text-xl md:text-2xl font-bold">For Collaboration</h2>
+                <p className="text-sm md:text-base text-muted-foreground">
                   Interested in collaborating on cybersecurity projects or research? Let's connect!
                 </p>
               </div>
@@ -129,16 +129,16 @@ export default function ContactPage() {
           </Card>
         </div>
 
-        <div className="pt-6">
+        <div className="pt-4 md:pt-6">
           <Card>
-            <CardContent className="p-6 space-y-4">
+            <CardContent className="p-4 md:p-6 space-y-4">
               <div className="space-y-2">
-                <h2 className="text-2xl font-bold">Additional Contact Information</h2>
-                <p className="text-muted-foreground">
+                <h2 className="text-xl md:text-2xl font-bold">Additional Contact Information</h2>
+                <p className="text-sm md:text-base text-muted-foreground">
                   You can also find me on these platforms:
                 </p>
               </div>
-              <ul className="space-y-2">
+              <ul className="space-y-2 text-sm md:text-base">
                 <li>
                   <Link
                     href="https://medium.com/@cyberwithatharva"

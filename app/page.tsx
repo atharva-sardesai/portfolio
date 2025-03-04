@@ -58,26 +58,26 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <main className="container py-10">
-        <section className="py-12 md:py-16 lg:py-20">
+      <main className="container py-6 md:py-10">
+        <section className="py-8 md:py-12 lg:py-20">
           <div className="grid gap-8 md:grid-cols-2 items-center">
-            <div className="space-y-6">
-              <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+            <div className="space-y-4 md:space-y-6 text-center md:text-left">
+              <h1 className="text-3xl md:text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
                 <span className="block">Cyber Security</span>
                 <span className="block text-primary">Enthusiast & Expert</span>
               </h1>
-              <p className="text-xl text-muted-foreground">
+              <p className="text-lg md:text-xl text-muted-foreground">
                 Final-year B.Tech student, cybersecurity enthusiast, and aspiring cloud security professional.
               </p>
-              <div className="flex gap-4">
-                <Button asChild>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+                <Button asChild className="w-full sm:w-auto">
                   <Link href="/contact">Get in Touch</Link>
                 </Button>
-                <Button variant="outline" asChild>
+                <Button variant="outline" asChild className="w-full sm:w-auto">
                   <Link href="/blog">View Blogs</Link>
                 </Button>
               </div>
-              <div className="flex gap-4 pt-2">
+              <div className="flex gap-4 pt-2 justify-center md:justify-start">
                 <Link href="https://www.linkedin.com/in/cyberwithatharva/" target="_blank" rel="noopener noreferrer">
                   <Button variant="ghost" size="icon" aria-label="LinkedIn">
                     <Linkedin className="h-5 w-5" />
@@ -97,7 +97,7 @@ export default async function HomePage() {
                 </Link>
               </div>
             </div>
-            <div className="relative w-full max-w-[550px] mx-auto md:ml-auto md:mr-0">
+            <div className="relative w-full max-w-[300px] md:max-w-[550px] mx-auto">
               <div className="aspect-square overflow-hidden rounded-full border-4 border-primary/20">
                 <Image
                   src="/atharva.png"
@@ -112,34 +112,34 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="py-12 space-y-8">
-          <div className="text-center space-y-4">
-            <h2 className="text-3xl font-bold tracking-tight">My Focus Areas</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+        <section className="py-8 md:py-12 space-y-6 md:space-y-8">
+          <div className="text-center space-y-3 md:space-y-4">
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">My Focus Areas</h2>
+            <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
               Exploring key areas in cybersecurity to build a strong foundation
             </p>
           </div>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <Card>
-              <CardContent className="p-6 space-y-2">
-                <h3 className="text-xl font-bold">Cloud Security</h3>
-                <p className="text-muted-foreground">
+              <CardContent className="p-4 md:p-6 space-y-2">
+                <h3 className="text-lg md:text-xl font-bold">Cloud Security</h3>
+                <p className="text-sm md:text-base text-muted-foreground">
                   Learning to secure cloud infrastructure and applications against emerging threats
                 </p>
               </CardContent>
             </Card>
             <Card>
-              <CardContent className="p-6 space-y-2">
-                <h3 className="text-xl font-bold">DevSecOps</h3>
-                <p className="text-muted-foreground">
+              <CardContent className="p-4 md:p-6 space-y-2">
+                <h3 className="text-lg md:text-xl font-bold">DevSecOps</h3>
+                <p className="text-sm md:text-base text-muted-foreground">
                   Exploring how to integrate security practices within DevOps processes for secure development
                 </p>
               </CardContent>
             </Card>
             <Card>
-              <CardContent className="p-6 space-y-2">
-                <h3 className="text-xl font-bold">Cloud Architecture</h3>
-                <p className="text-muted-foreground">
+              <CardContent className="p-4 md:p-6 space-y-2">
+                <h3 className="text-lg md:text-xl font-bold">Cloud Architecture</h3>
+                <p className="text-sm md:text-base text-muted-foreground">
                   Learning to design and implement scalable, efficient, and secure cloud infrastructures
                 </p>
               </CardContent>

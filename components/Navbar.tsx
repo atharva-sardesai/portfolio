@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/button"
 export default function Navbar() {
   return (
     <nav className="border-b bg-background">
-      <div className="container flex h-20 items-center">
-        <Link href="/" className="flex items-center -ml-20">
-          <div className="relative w-[380px] h-[56px]">
+      <div className="container flex h-16 md:h-20 items-center">
+        <Link href="/" className="flex items-center -ml-4 md:-ml-20">
+          <div className="relative w-[280px] md:w-[380px] h-[42px] md:h-[56px]">
             <Image
               src="/images/logo.png"
               alt="Cyber with Atharva Logo"
@@ -18,12 +18,12 @@ export default function Navbar() {
             />
           </div>
         </Link>
-        <div className="flex flex-1 items-center space-x-4 sm:justify-end">
-          <nav className="flex items-center space-x-2">
-            <Button asChild variant="ghost">
+        <div className="flex flex-1 items-center justify-end">
+          <nav className="flex items-center space-x-1 md:space-x-2">
+            <Button asChild variant="ghost" className="text-sm md:text-base px-2 md:px-4">
               <Link href="/blog">Blog</Link>
             </Button>
-            <Button asChild variant="ghost">
+            <Button asChild variant="ghost" className="text-sm md:text-base px-2 md:px-4">
               <Link href="/contact">Get in Touch</Link>
             </Button>
           </nav>
