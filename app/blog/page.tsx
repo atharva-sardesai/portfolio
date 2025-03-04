@@ -9,15 +9,19 @@ interface Post {
   pubDate: string
   link: string
   guid: string
+  imageUrl?: string
 }
 
-function extractImageUrl(content: string): string {
+function extractImageUrl(content: string | undefined, imageUrl: string | undefined): string {
+  if (imageUrl) return imageUrl;
+  if (!content) return '/placeholder.svg';
   const imgRegex = /<img[^>]+src="([^">]+)"/
   const match = content.match(imgRegex)
   return match ? match[1] : '/placeholder.svg'
 }
 
-function stripHtml(html: string): string {
+function stripHtml(html: string | undefined): string {
+  if (!html) return '';
   return html.replace(/<[^>]*>/g, '')
 }
 
@@ -29,25 +33,26 @@ export async function generateStaticParams() {
 async function getPosts(): Promise<Post[]> {
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_GATEWAY_URL || '';
-    console.log('Attempting to fetch from API URL:', apiUrl);
+    console.log('API URL:', apiUrl); // Debug log
     
     if (!apiUrl) {
       console.error('API URL is not set in environment variables');
       return [];
     }
 
+    console.log('Fetching posts from:', apiUrl); // Debug log
     const response = await fetch(apiUrl, {
-      next: { revalidate: 3600 }, // Cache for 1 hour
+      next: { revalidate: 3600 },
       headers: {
         'Accept': 'application/json'
       }
     });
 
-    console.log('Response status:', response.status);
-    console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+    console.log('Response status:', response.status); // Debug log
+    console.log('Response headers:', Object.fromEntries(response.headers.entries())); // Debug log
     
     const responseText = await response.text();
-    console.log('Raw response:', responseText);
+    console.log('Raw response:', responseText); // Debug log
 
     if (!response.ok) {
       console.error('Error response:', responseText);
@@ -56,8 +61,19 @@ async function getPosts(): Promise<Post[]> {
 
     try {
       const data = JSON.parse(responseText);
-      console.log('Parsed data:', data);
-      return data.posts || [];
+      console.log('Parsed data:', data); // Debug log
+      if (!data.posts) {
+        console.error('No posts found in response');
+        return [];
+      }
+      return data.posts.map((post: any) => ({
+        title: post.title || '',
+        content: post.content || '',
+        pubDate: post.pubDate || new Date().toISOString(),
+        link: post.link || '#',
+        guid: post.guid || Math.random().toString(),
+        imageUrl: post.imageUrl || null
+      }));
     } catch (parseError) {
       console.error('Error parsing JSON:', parseError);
       return [];
@@ -89,7 +105,9 @@ export default async function BlogPage() {
                     </p>
                     <div
                       className="text-muted-foreground mb-4 line-clamp-3"
-                      dangerouslySetInnerHTML={{ __html: stripHtml(post.content).slice(0, 200) + "..." }}
+                      dangerouslySetInnerHTML={{ 
+                        __html: post.content ? stripHtml(post.content).slice(0, 200) + "..." : ''
+                      }}
                     />
                     <Button asChild>
                       <Link href={post.link} target="_blank" rel="noopener noreferrer">
@@ -99,8 +117,8 @@ export default async function BlogPage() {
                   </div>
                   <div className="relative w-48 h-48 flex-shrink-0">
                     <Image
-                      src={extractImageUrl(post.content)}
-                      alt={post.title}
+                      src={extractImageUrl(post.content, post.imageUrl)}
+                      alt={post.title || 'Blog post'}
                       fill
                       className="object-cover rounded-lg"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
