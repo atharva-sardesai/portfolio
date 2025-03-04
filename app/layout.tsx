@@ -9,7 +9,20 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Cyber with Atharva",
-  description: "Cybersecurity Portfolio",
+  description: "Cybersecurity enthusiast and cloud security professional",
+  icons: {
+    icon: [
+      {
+        url: "/favicon.ico",
+        sizes: "any",
+      },
+      {
+        url: "/icon.png",
+        type: "image/png",
+        sizes: "32x32",
+      },
+    ],
+  },
   metadataBase: new URL('https://cyberwithatharva.github.io/cyber-portfolio'),
 }
 
@@ -20,12 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link 
-          rel="icon" 
-          href={`${process.env.NEXT_PUBLIC_BASE_URL || ''}/favicon.ico`}
-        />
-      </head>
+      <head />
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"

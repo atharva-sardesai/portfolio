@@ -74,7 +74,7 @@ export default async function HomePage() {
                   <Link href="/contact">Get in Touch</Link>
                 </Button>
                 <Button variant="outline" asChild>
-                  <Link href="/projects">View Projects</Link>
+                  <Link href="/blog">View Blogs</Link>
                 </Button>
               </div>
               <div className="flex gap-4 pt-2">
@@ -97,13 +97,13 @@ export default async function HomePage() {
                 </Link>
               </div>
             </div>
-            <div className="relative w-full max-w-[600px] mx-auto md:ml-auto md:mr-0">
+            <div className="relative w-full max-w-[550px] mx-auto md:ml-auto md:mr-0">
               <div className="aspect-square overflow-hidden rounded-full border-4 border-primary/20">
                 <Image
-                  src="/placeholder.svg?height=600&width=600"
+                  src="/atharva.png"
                   alt="Atharva's profile"
-                  width={600}
-                  height={600}
+                  width={550}
+                  height={550}
                   className="object-cover w-full h-full"
                   priority
                 />
@@ -250,21 +250,8 @@ export default async function HomePage() {
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/certifications"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                  >
-                    Certifications
-                  </Link>
-                </li>
-                <li>
                   <Link href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">
                     Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/projects" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Projects
                   </Link>
                 </li>
                 <li>
