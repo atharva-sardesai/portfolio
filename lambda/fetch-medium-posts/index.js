@@ -1,10 +1,7 @@
 const Parser = require('rss-parser');
-const fs = require('fs').promises;
-const path = require('path');
 
 exports.handler = async (event) => {
     try {
-        console.log('Fetching posts from Medium...');
         const parser = new Parser();
         const feed = await parser.parseURL('https://medium.com/feed/@cyberwithatharva');
         
@@ -21,24 +18,28 @@ exports.handler = async (event) => {
                 content: item.content,
                 pubDate: item.pubDate,
                 link: item.link,
-                guid: item.guid,
-                lastUpdated: new Date().toISOString()
+                guid: item.guid
             }));
 
-        // Write to the public directory
-        const filePath = path.join(process.env.LAMBDA_TASK_ROOT, 'medium-posts.json');
-        await fs.writeFile(filePath, JSON.stringify({ posts }, null, 2));
-        
-        console.log('Posts updated successfully');
         return {
             statusCode: 200,
-            body: JSON.stringify({ message: 'Posts updated successfully' })
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET',
+                'Access-Control-Allow-Headers': 'Content-Type'
+            },
+            body: JSON.stringify({ posts })
         };
     } catch (error) {
-        console.error('Error updating posts:', error);
+        console.error('Error fetching posts:', error);
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: 'Failed to update blog posts' })
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET',
+                'Access-Control-Allow-Headers': 'Content-Type'
+            },
+            body: JSON.stringify({ error: 'Failed to fetch blog posts' })
         };
     }
 }; 

@@ -14,38 +14,42 @@ interface Post {
   guid: string
 }
 
-function extractImageUrl(content: string): string {
-  const imgRegex = /<img[^>]+src="([^">]+)"/
-  const match = content.match(imgRegex)
-  return match ? match[1] : '/placeholder.svg'
+function extractImageUrl(content: string | undefined): string {
+  if (!content) return '/placeholder.svg';
+  const imgRegex = /<img[^>]+src="([^">]+)"/;
+  const match = content.match(imgRegex);
+  return match ? match[1] : '/placeholder.svg';
 }
 
-function stripHtml(html: string): string {
-  return html.replace(/<[^>]*>/g, '')
+function stripHtml(html: string | undefined): string {
+  if (!html) return '';
+  return html.replace(/<[^>]*>/g, '');
 }
 
 async function getPosts() {
   try {
-    const baseUrl = process.env.NODE_ENV === 'development' 
-      ? 'http://localhost:3000' 
-      : process.env.NEXT_PUBLIC_BASE_URL
-
-    const res = await fetch(`${baseUrl}/api/medium-posts`, {
-      next: { revalidate: 3600 },
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-
-    if (!res.ok) {
-      throw new Error('Failed to fetch posts')
+    const apiUrl = process.env.NEXT_PUBLIC_API_GATEWAY_URL;
+    if (!apiUrl) {
+      throw new Error('API Gateway URL not configured');
     }
 
-    const posts = await res.json()
-    return posts.slice(0, 3) // Get only the three most recent posts
+    const response = await fetch(apiUrl, {
+      next: { revalidate: 3600 },
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch posts: ${response.status}`);
+    }
+
+    const data = await response.json();
+    const posts = data.posts || [];
+    return posts.slice(0, 3); // Get only the three most recent posts
   } catch (error) {
-    console.error('Error fetching posts:', error)
-    return [] // Return empty array as fallback
+    console.error('Error fetching posts:', error);
+    return []; // Return empty array as fallback
   }
 }
 

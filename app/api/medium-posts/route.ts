@@ -1,29 +1,21 @@
-import Parser from 'rss-parser'
 import { NextResponse } from 'next/server'
 
 export async function GET() {
   try {
-    const parser = new Parser()
-    const feed = await parser.parseURL('https://medium.com/feed/@cyberwithatharva')
-    
-    const posts = feed.items
-      .filter((item): item is Parser.Item & Required<Pick<Parser.Item, 'title' | 'content' | 'pubDate' | 'link' | 'guid'>> => {
-        return !!item.title && !!item.content && !!item.pubDate && !!item.link && !!item.guid
-      })
-      .map(item => ({
-        title: item.title,
-        content: item.content,
-        pubDate: item.pubDate,
-        link: item.link,
-        guid: item.guid,
-      }))
+    const apiUrl = process.env.NEXT_PUBLIC_API_GATEWAY_URL;
+    if (!apiUrl) {
+      throw new Error('API Gateway URL not configured');
+    }
 
-    return NextResponse.json({ posts })
+    const response = await fetch(apiUrl);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch posts: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return NextResponse.json(data.posts || []);
   } catch (error) {
-    console.error('Error fetching posts:', error)
-    return NextResponse.json(
-      { error: 'Failed to fetch blog posts' },
-      { status: 500 }
-    )
+    console.error('Error fetching posts:', error);
+    return NextResponse.json([], { status: 500 });
   }
 } 
