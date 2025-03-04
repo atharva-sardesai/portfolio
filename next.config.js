@@ -4,8 +4,12 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',
+        hostname: 'cdn-images-1.medium.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      }
     ],
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
@@ -14,4 +18,4 @@ const nextConfig = {
   output: 'standalone'
 }
 
-module.exports = nextConfig 
+module.exports = nextConfig

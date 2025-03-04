@@ -12,12 +12,31 @@ interface Post {
   imageUrl?: string
 }
 
-function extractImageUrl(content: string | undefined, imageUrl: string | undefined): string {
-  if (imageUrl) return imageUrl;
-  if (!content) return '/placeholder.svg';
-  const imgRegex = /<img[^>]+src="([^">]+)"/
-  const match = content.match(imgRegex)
-  return match ? match[1] : '/placeholder.svg'
+function extractImageUrl(content: string | undefined, imageUrl: string | undefined, link: string | undefined, guid: string | undefined): string {
+  console.log('Extracting image with guid:', guid);
+  console.log('Article link:', link);
+  
+  if (imageUrl) {
+    console.log('Using provided imageUrl:', imageUrl);
+    return imageUrl;
+  }
+
+  // Extract article ID from guid (e.g., "https://medium.com/p/e17a294ca1d2" -> "e17a294ca1d2")
+  if (guid) {
+    const guidMatch = /medium\.com\/p\/([a-f0-9]+)$/;
+    const match = guid.match(guidMatch);
+    if (match && match[1]) {
+      const articleId = match[1];
+      // Using Medium's CDN URL format
+      const imageUrl = `https://cdn-images-1.medium.com/max/1024/1*${articleId}.jpeg`;
+      console.log('Generated Medium CDN URL:', imageUrl);
+      return imageUrl;
+    }
+  }
+
+  // Use a technology-themed placeholder as fallback
+  console.log('Using fallback image');
+  return 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=600&fit=crop';
 }
 
 function stripHtml(html: string | undefined): string {
@@ -33,14 +52,14 @@ export async function generateStaticParams() {
 async function getPosts(): Promise<Post[]> {
   try {
     const apiUrl = process.env.NEXT_PUBLIC_API_GATEWAY_URL || '';
-    console.log('API URL:', apiUrl); // Debug log
+    console.log('API URL:', apiUrl);
     
     if (!apiUrl) {
       console.error('API URL is not set in environment variables');
       return [];
     }
 
-    console.log('Fetching posts from:', apiUrl); // Debug log
+    console.log('Fetching posts from:', apiUrl);
     const response = await fetch(apiUrl, {
       next: { revalidate: 3600 },
       headers: {
@@ -48,36 +67,25 @@ async function getPosts(): Promise<Post[]> {
       }
     });
 
-    console.log('Response status:', response.status); // Debug log
-    console.log('Response headers:', Object.fromEntries(response.headers.entries())); // Debug log
-    
-    const responseText = await response.text();
-    console.log('Raw response:', responseText); // Debug log
-
     if (!response.ok) {
-      console.error('Error response:', responseText);
       throw new Error(`Failed to fetch posts: ${response.status} ${response.statusText}`);
     }
 
-    try {
-      const data = JSON.parse(responseText);
-      console.log('Parsed data:', data); // Debug log
-      if (!data.posts) {
-        console.error('No posts found in response');
-        return [];
-      }
-      return data.posts.map((post: any) => ({
-        title: post.title || '',
-        content: post.content || '',
-        pubDate: post.pubDate || new Date().toISOString(),
-        link: post.link || '#',
-        guid: post.guid || Math.random().toString(),
-        imageUrl: post.imageUrl || null
-      }));
-    } catch (parseError) {
-      console.error('Error parsing JSON:', parseError);
+    const data = await response.json();
+    
+    if (!data.posts) {
+      console.error('No posts found in response');
       return [];
     }
+
+    return data.posts.map((post: any) => ({
+      title: post.title || '',
+      content: post.content || '',
+      pubDate: post.pubDate || new Date().toISOString(),
+      link: post.link || '#',
+      guid: post.guid || Math.random().toString(),
+      imageUrl: post.imageUrl || null
+    }));
   } catch (error) {
     console.error('Error loading posts:', error);
     return [];
@@ -117,7 +125,7 @@ export default async function BlogPage() {
                   </div>
                   <div className="relative w-48 h-48 flex-shrink-0">
                     <Image
-                      src={extractImageUrl(post.content, post.imageUrl)}
+                      src={extractImageUrl(post.content, post.imageUrl, post.link, post.guid)}
                       alt={post.title || 'Blog post'}
                       fill
                       className="object-cover rounded-lg"
