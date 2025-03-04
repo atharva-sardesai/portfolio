@@ -7,7 +7,7 @@ export default function Navbar() {
     <nav className="border-b bg-background">
       <div className="container flex h-20 items-center">
         <Link href="/" className="flex items-center -ml-20">
-          <div className="relative w-[320px] h-[48px]">
+          <div className="relative w-[380px] h-[56px]">
             <Image
               src="/images/logo.png"
               alt="Cyber with Atharva Logo"
