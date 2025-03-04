@@ -51,6 +51,26 @@ export async function generateStaticParams() {
 
 async function getPosts(): Promise<Post[]> {
   try {
+    // Try to fetch from the static JSON file first (production)
+    try {
+      const response = await fetch('/medium-posts.json');
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Fetched posts from static JSON file');
+        return data.posts.map((post: any) => ({
+          title: post.title || '',
+          content: post.content || '',
+          pubDate: post.pubDate || new Date().toISOString(),
+          link: post.link || '#',
+          guid: post.guid || Math.random().toString(),
+          imageUrl: post.imageUrl || null
+        }));
+      }
+    } catch (error) {
+      console.log('Could not fetch from static JSON, falling back to API Gateway');
+    }
+
+    // Fall back to API Gateway (development)
     const apiUrl = process.env.NEXT_PUBLIC_API_GATEWAY_URL || '';
     console.log('API URL:', apiUrl);
     

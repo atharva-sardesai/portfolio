@@ -15,7 +15,13 @@ const nextConfig = {
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
-  output: 'standalone'
+  output: 'standalone',
+  distDir: '.next',
+  // Ensure public directory is copied to the build output
+  assetPrefix: '',
+  publicRuntimeConfig: {
+    staticFolder: '/public',
+  }
 }
 
 module.exports = nextConfig
