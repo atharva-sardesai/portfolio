@@ -4,7 +4,15 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: '*.medium.com',
+      },
+      {
+        protocol: 'https',
         hostname: 'cdn-images-1.medium.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'miro.medium.com',
       },
       {
         protocol: 'https',
@@ -13,7 +21,7 @@ const nextConfig = {
     ],
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    contentSecurityPolicy: "default-src 'self'; frame-src 'self'; script-src 'none'; sandbox;",
   },
   output: 'standalone',
   distDir: '.next',

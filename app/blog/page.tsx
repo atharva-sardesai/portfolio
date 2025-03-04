@@ -27,10 +27,14 @@ function extractImageUrl(content: string | undefined, imageUrl: string | undefin
     const match = guid.match(guidMatch);
     if (match && match[1]) {
       const articleId = match[1];
-      // Using Medium's CDN URL format
-      const imageUrl = `https://cdn-images-1.medium.com/max/1024/1*${articleId}.jpeg`;
-      console.log('Generated Medium CDN URL:', imageUrl);
-      return imageUrl;
+      // Try multiple Medium CDN formats
+      const possibleUrls = [
+        `https://miro.medium.com/v2/resize:fit:1400/${articleId}`,
+        `https://cdn-images-1.medium.com/max/1024/1*${articleId}.jpeg`,
+        `https://miro.medium.com/max/1400/${articleId}`
+      ];
+      console.log('Generated Medium CDN URLs:', possibleUrls);
+      return possibleUrls[0]; // Use the first format as default
     }
   }
 
