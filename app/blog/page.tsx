@@ -29,21 +29,29 @@ export async function generateStaticParams() {
 
 async function getPosts(): Promise<Post[]> {
   try {
+    console.log('Fetching posts from Medium...')
     const parser = new Parser()
     const feed = await parser.parseURL('https://medium.com/feed/@cyberwithatharva')
-    return feed.items
+    console.log('Feed fetched successfully:', feed.title)
+    const filteredItems = feed.items
       .filter((item): item is Parser.Item & Required<Pick<Parser.Item, 'title' | 'content' | 'pubDate' | 'link' | 'guid'>> => {
-        return !!item.title && !!item.content && !!item.pubDate && !!item.link && !!item.guid
+        const isValid = !!item.title && !!item.content && !!item.pubDate && !!item.link && !!item.guid
+        if (!isValid) {
+          console.log('Invalid item:', item)
+        }
+        return isValid
       })
-      .map(item => ({
-        title: item.title,
-        content: item.content,
-        pubDate: item.pubDate,
-        link: item.link,
-        guid: item.guid,
-      }))
+    console.log(`Found ${filteredItems.length} valid posts`)
+    return filteredItems.map(item => ({
+      title: item.title,
+      content: item.content,
+      pubDate: item.pubDate,
+      link: item.link,
+      guid: item.guid,
+    }))
   } catch (error) {
-    console.error('Error fetching posts:', error)
+    console.error('Error fetching posts:', error instanceof Error ? error.message : error)
+    console.error('Error details:', error)
     return []
   }
 }
