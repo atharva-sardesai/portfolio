@@ -2,6 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import Parser from 'rss-parser'
 
 interface Post {
   title: string
@@ -21,28 +22,29 @@ function stripHtml(html: string): string {
   return html.replace(/<[^>]*>/g, '')
 }
 
-async function getPosts() {
+// This function runs at build time on the server
+export async function generateStaticParams() {
+  return []
+}
+
+async function getPosts(): Promise<Post[]> {
   try {
-    // Use the local API route during development
-    const baseUrl = process.env.NODE_ENV === 'development' 
-      ? 'http://localhost:3000' 
-      : process.env.NEXT_PUBLIC_BASE_URL
-
-    const res = await fetch(`${baseUrl}/api/medium-posts`, {
-      next: { revalidate: 3600 },
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-
-    if (!res.ok) {
-      throw new Error('Failed to fetch posts')
-    }
-
-    return res.json()
+    const parser = new Parser()
+    const feed = await parser.parseURL('https://medium.com/feed/@cyberwithatharva')
+    return feed.items
+      .filter((item): item is Parser.Item & Required<Pick<Parser.Item, 'title' | 'content' | 'pubDate' | 'link' | 'guid'>> => {
+        return !!item.title && !!item.content && !!item.pubDate && !!item.link && !!item.guid
+      })
+      .map(item => ({
+        title: item.title,
+        content: item.content,
+        pubDate: item.pubDate,
+        link: item.link,
+        guid: item.guid,
+      }))
   } catch (error) {
     console.error('Error fetching posts:', error)
-    return [] // Return empty array as fallback
+    return []
   }
 }
 

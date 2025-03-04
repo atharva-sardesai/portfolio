@@ -6,6 +6,7 @@ const nextConfig = {
   },
   basePath: '/cyber-portfolio', // Replace with your repository name
   assetPrefix: '/cyber-portfolio/', // Replace with your repository name
+  trailingSlash: true,
 }
 
 module.exports = nextConfig 
