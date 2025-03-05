@@ -1,24 +1,28 @@
 import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY)
 
 export async function POST(request: Request) {
   try {
     const { name, email, message } = await request.json()
 
+    if (!process.env.NEXT_PUBLIC_RESEND_API_KEY) {
+      throw new Error("Missing Resend API key")
+    }
+
     console.log('Attempting to send email with:', {
       from: 'Portfolio Contact <onboarding@resend.dev>',
       to: ['atharvapsardesai@gmail.com'],
       subject: `New Contact Form Submission from ${name}`,
-      replyTo: email,
+      reply_to: email,
     })
 
     const { data, error } = await resend.emails.send({
       from: 'Portfolio Contact <onboarding@resend.dev>',
       to: ['atharvapsardesai@gmail.com'],
       subject: `New Contact Form Submission from ${name}`,
-      replyTo: email,
+      reply_to: email,
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
       html: `
         <h2>New Contact Form Submission</h2>
