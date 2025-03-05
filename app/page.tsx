@@ -66,7 +66,7 @@ export default async function HomePage() {
                 <span className="block text-primary">Enthusiast & Expert</span>
               </h1>
               <p className="text-base md:text-xl text-muted-foreground">
-                Final-year B.Tech student, cybersecurity enthusiast, and aspiring cloud security professional.
+                Final-year B.Tech student, Cybersecurity Enthusiast, and aspiring Cloud Security Professional.
               </p>
               <div className="flex flex-col sm:flex-row gap-2 md:gap-3 justify-center md:justify-start">
                 <Button asChild className="w-full sm:w-auto">
