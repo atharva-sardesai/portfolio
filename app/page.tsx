@@ -58,18 +58,18 @@ export default async function HomePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <main className="container py-6 md:py-10">
-        <section className="py-8 md:py-12 lg:py-20">
-          <div className="grid gap-8 md:grid-cols-2 items-center">
-            <div className="space-y-4 md:space-y-6 text-center md:text-left">
-              <h1 className="text-3xl md:text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+      <main className="container px-4 md:px-6 py-4 md:py-10">
+        <section className="py-6 md:py-12 lg:py-20">
+          <div className="grid gap-6 md:gap-8 md:grid-cols-2 items-center">
+            <div className="space-y-3 md:space-y-6 text-center md:text-left order-2 md:order-1">
+              <h1 className="text-2xl md:text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
                 <span className="block">Cyber Security</span>
                 <span className="block text-primary">Enthusiast & Expert</span>
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground">
+              <p className="text-base md:text-xl text-muted-foreground">
                 Final-year B.Tech student, cybersecurity enthusiast, and aspiring cloud security professional.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+              <div className="flex flex-col sm:flex-row gap-2 md:gap-3 justify-center md:justify-start">
                 <Button asChild className="w-full sm:w-auto">
                   <Link href="/contact">Get in Touch</Link>
                 </Button>
@@ -77,27 +77,27 @@ export default async function HomePage() {
                   <Link href="/blog">View Blogs</Link>
                 </Button>
               </div>
-              <div className="flex gap-4 pt-2 justify-center md:justify-start">
+              <div className="flex gap-3 md:gap-4 pt-2 justify-center md:justify-start">
                 <Link href="https://www.linkedin.com/in/cyberwithatharva/" target="_blank" rel="noopener noreferrer">
-                  <Button variant="ghost" size="icon" aria-label="LinkedIn">
-                    <Linkedin className="h-5 w-5" />
+                  <Button variant="ghost" size="icon" className="h-8 w-8 md:h-10 md:w-10" aria-label="LinkedIn">
+                    <Linkedin className="h-4 w-4 md:h-5 md:w-5" />
                   </Button>
                 </Link>
                 <Link href="https://x.com/NullSecures" target="_blank" rel="noopener noreferrer">
-                  <Button variant="ghost" size="icon" aria-label="Twitter">
-                    <Twitter className="h-5 w-5" />
+                  <Button variant="ghost" size="icon" className="h-8 w-8 md:h-10 md:w-10" aria-label="Twitter">
+                    <Twitter className="h-4 w-4 md:h-5 md:w-5" />
                   </Button>
                 </Link>
                 <Link href="https://medium.com/@cyberwithatharva" target="_blank" rel="noopener noreferrer">
-                  <Button variant="ghost" size="icon" aria-label="Medium">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                  <Button variant="ghost" size="icon" className="h-8 w-8 md:h-10 md:w-10" aria-label="Medium">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z" />
                     </svg>
                   </Button>
                 </Link>
               </div>
             </div>
-            <div className="relative w-full max-w-[300px] md:max-w-[550px] mx-auto">
+            <div className="relative w-full max-w-[220px] md:max-w-[550px] mx-auto order-1 md:order-2">
               <div className="aspect-square overflow-hidden rounded-full border-4 border-primary/20">
                 <Image
                   src="/atharva.png"
@@ -112,34 +112,34 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="py-8 md:py-12 space-y-6 md:space-y-8">
-          <div className="text-center space-y-3 md:space-y-4">
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight">My Focus Areas</h2>
-            <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
+        <section className="py-6 md:py-12 space-y-4 md:space-y-8">
+          <div className="text-center space-y-2 md:space-y-4">
+            <h2 className="text-xl md:text-3xl font-bold tracking-tight">My Focus Areas</h2>
+            <p className="text-xs md:text-base text-muted-foreground max-w-2xl mx-auto">
               Exploring key areas in cybersecurity to build a strong foundation
             </p>
           </div>
-          <div className="grid gap-4 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
             <Card>
-              <CardContent className="p-4 md:p-6 space-y-2">
-                <h3 className="text-lg md:text-xl font-bold">Cloud Security</h3>
-                <p className="text-sm md:text-base text-muted-foreground">
+              <CardContent className="p-3 md:p-6 space-y-2">
+                <h3 className="text-base md:text-xl font-bold">Cloud Security</h3>
+                <p className="text-xs md:text-base text-muted-foreground">
                   Learning to secure cloud infrastructure and applications against emerging threats
                 </p>
               </CardContent>
             </Card>
             <Card>
-              <CardContent className="p-4 md:p-6 space-y-2">
-                <h3 className="text-lg md:text-xl font-bold">DevSecOps</h3>
-                <p className="text-sm md:text-base text-muted-foreground">
+              <CardContent className="p-3 md:p-6 space-y-2">
+                <h3 className="text-base md:text-xl font-bold">DevSecOps</h3>
+                <p className="text-xs md:text-base text-muted-foreground">
                   Exploring how to integrate security practices within DevOps processes for secure development
                 </p>
               </CardContent>
             </Card>
             <Card>
-              <CardContent className="p-4 md:p-6 space-y-2">
-                <h3 className="text-lg md:text-xl font-bold">Cloud Architecture</h3>
-                <p className="text-sm md:text-base text-muted-foreground">
+              <CardContent className="p-3 md:p-6 space-y-2">
+                <h3 className="text-base md:text-xl font-bold">Cloud Architecture</h3>
+                <p className="text-xs md:text-base text-muted-foreground">
                   Learning to design and implement scalable, efficient, and secure cloud infrastructures
                 </p>
               </CardContent>
@@ -232,18 +232,18 @@ export default async function HomePage() {
           </div>
         </section>
       </main>
-      <footer className="border-t bg-muted/40">
-        <div className="container py-8 md:py-12">
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            <div className="space-y-4">
-              <h3 className="text-lg font-bold">Cyber with Atharva</h3>
-              <p className="text-sm text-muted-foreground">
+      <footer className="w-full border-t bg-muted/40">
+        <div className="container px-4 md:px-6 py-6 md:py-12">
+          <div className="grid gap-6 md:gap-8 grid-cols-2 md:grid-cols-3">
+            <div className="space-y-3 md:space-y-4">
+              <h3 className="text-base md:text-lg font-bold">Cyber with Atharva</h3>
+              <p className="text-xs md:text-sm text-muted-foreground">
                 Building a secure digital future through expertise, innovation, and education.
               </p>
             </div>
-            <div className="space-y-4">
-              <h3 className="text-lg font-bold">Quick Links</h3>
-              <ul className="space-y-2 text-sm">
+            <div className="space-y-3 md:space-y-4">
+              <h3 className="text-base md:text-lg font-bold">Quick Links</h3>
+              <ul className="space-y-1.5 md:space-y-2 text-xs md:text-sm">
                 <li>
                   <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">
                     Home
@@ -261,9 +261,9 @@ export default async function HomePage() {
                 </li>
               </ul>
             </div>
-            <div className="space-y-4">
-              <h3 className="text-lg font-bold">Connect</h3>
-              <ul className="space-y-2 text-sm">
+            <div className="space-y-3 md:space-y-4">
+              <h3 className="text-base md:text-lg font-bold">Connect</h3>
+              <ul className="space-y-1.5 md:space-y-2 text-xs md:text-sm">
                 <li>
                   <Link
                     href="https://www.linkedin.com/in/cyberwithatharva/"
@@ -296,38 +296,9 @@ export default async function HomePage() {
                 </li>
               </ul>
             </div>
-            <div className="space-y-4">
-              <h3 className="text-lg font-bold">Theme</h3>
-              <div className="flex items-center space-x-2">
-                <Button variant="outline" size="icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
-                  >
-                    <circle cx="12" cy="12" r="4" />
-                    <path d="M12 2v2" />
-                    <path d="M12 20v2" />
-                    <path d="m4.93 4.93 1.41 1.41" />
-                    <path d="m17.66 17.66 1.41 1.41" />
-                    <path d="M2 12h2" />
-                    <path d="M20 12h2" />
-                    <path d="m6.34 17.66-1.41 1.41" />
-                    <path d="m19.07 4.93-1.41 1.41" />
-                  </svg>
-                </Button>
-              </div>
-            </div>
           </div>
-          <div className="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">
-            <p>© 2024 Cyber with Atharva. All rights reserved.</p>
+          <div className="mt-6 md:mt-8 border-t pt-6 md:pt-8 text-center">
+            <p className="text-xs md:text-sm text-muted-foreground">© 2024 Cyber with Atharva. All rights reserved.</p>
           </div>
         </div>
       </footer>
