@@ -96,13 +96,13 @@ export default async function HomePage() {
                 </Link>
               </div>
             </div>
-            <div className="relative w-full max-w-[220px] md:max-w-[550px] mx-auto order-1 md:order-2">
+            <div className="relative w-full max-w-[220px] md:max-w-[400px] mx-auto order-1 md:order-2">
               <div className="aspect-square overflow-hidden rounded-full border-4 border-primary/20">
                 <Image
                   src="/atharva.png"
                   alt="Atharva's profile"
-                  width={550}
-                  height={550}
+                  width={400}
+                  height={400}
                   className="object-cover w-full h-full"
                   priority
                 />
@@ -201,7 +201,8 @@ export default async function HomePage() {
                         src={extractImageUrl(post.content)}
                         alt={post.title}
                         fill
-                        className="object-cover"
+                        className="object-cover rounded-t-lg"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       />
                     </div>
                     <div className="p-6 space-y-2">

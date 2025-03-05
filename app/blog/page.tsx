@@ -143,12 +143,12 @@ export default async function BlogPage() {
                       </Link>
                     </Button>
                   </div>
-                  <div className="relative w-48 h-48 flex-shrink-0">
+                  <div className="relative h-48 w-full">
                     <Image
                       src={extractImageUrl(post.content, post.imageUrl, post.link, post.guid)}
-                      alt={post.title || 'Blog post'}
+                      alt={post.title}
                       fill
-                      className="object-cover rounded-lg"
+                      className="object-cover rounded-t-lg"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   </div>

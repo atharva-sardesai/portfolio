@@ -7,12 +7,13 @@ export default function Navbar() {
     <nav className="w-full border-b bg-background py-2 md:py-3">
       <div className="container flex h-14 md:h-16 items-center px-0">
         <Link href="/" className="flex items-center -ml-1 md:-ml-20">
-          <div className="relative w-[160px] md:w-[380px] h-[32px] md:h-[56px]">
+          <div className="relative w-[140px] md:w-[280px] h-[32px] md:h-[48px]">
             <Image
               src="/images/logo.png"
               alt="Cyber with Atharva Logo"
               fill
               className="object-contain"
+              sizes="(max-width: 768px) 140px, 280px"
               priority
               quality={100}
             />
