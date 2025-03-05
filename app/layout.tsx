@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body className={inter.className}>
+      <body className={`${inter.className} min-h-screen bg-background`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -42,7 +42,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          {children}
+          <main className="container mx-auto">
+            {children}
+          </main>
           <Toaster />
         </ThemeProvider>
       </body>

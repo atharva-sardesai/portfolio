@@ -196,7 +196,7 @@ export default async function HomePage() {
               recentPosts.map((post: Post) => (
                 <Card key={post.guid}>
                   <CardContent className="p-0">
-                    <div className="relative h-48 w-full">
+                    <div className="relative aspect-video w-full">
                       <Image
                         src={extractImageUrl(post.content)}
                         alt={post.title}
@@ -206,12 +206,12 @@ export default async function HomePage() {
                       />
                     </div>
                     <div className="p-6 space-y-2">
-                      <h3 className="text-xl font-bold">{post.title}</h3>
+                      <h3 className="text-xl font-bold line-clamp-2">{post.title}</h3>
                       <p className="text-sm text-muted-foreground">
                         Published on {new Date(post.pubDate).toLocaleDateString()}
                       </p>
                       <div
-                        className="text-muted-foreground line-clamp-2"
+                        className="text-muted-foreground line-clamp-2 text-sm"
                         dangerouslySetInnerHTML={{ __html: stripHtml(post.content).slice(0, 150) + "..." }}
                       />
                       <Button variant="link" asChild className="p-0">

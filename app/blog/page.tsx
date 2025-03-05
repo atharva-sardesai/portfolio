@@ -125,8 +125,8 @@ export default async function BlogPage() {
           {posts.map((post: Post) => (
             <Card key={post.guid} className="overflow-hidden">
               <CardContent className="p-6">
-                <div className="flex gap-6">
-                  <div className="flex-1">
+                <div className="flex flex-col md:flex-row gap-6">
+                  <div className="flex-1 order-2 md:order-1">
                     <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
                     <p className="text-sm text-muted-foreground mb-4">
                       Published on {new Date(post.pubDate).toLocaleDateString()}
@@ -143,13 +143,13 @@ export default async function BlogPage() {
                       </Link>
                     </Button>
                   </div>
-                  <div className="relative h-48 w-full">
+                  <div className="w-full md:w-1/3 h-48 relative order-1 md:order-2">
                     <Image
                       src={extractImageUrl(post.content, post.imageUrl, post.link, post.guid)}
                       alt={post.title}
                       fill
-                      className="object-cover rounded-t-lg"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover rounded-lg"
+                      sizes="(max-width: 768px) 100vw, 33vw"
                     />
                   </div>
                 </div>
