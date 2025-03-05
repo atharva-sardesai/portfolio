@@ -1,10 +1,9 @@
-import Image from "next/image"
 import Link from "next/link"
-import { Linkedin, Twitter } from "lucide-react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import { Linkedin, Twitter } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
-import { ThemeToggle } from "@/components/theme-toggle"
 
 interface Post {
   title: string
