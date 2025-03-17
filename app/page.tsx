@@ -129,9 +129,9 @@ export default async function HomePage() {
             </Card>
             <Card>
               <CardContent className="p-3 md:p-6 space-y-2">
-                <h3 className="text-base md:text-xl font-bold">DevSecOps</h3>
+                <h3 className="text-base md:text-xl font-bold">Malware Analysis</h3>
                 <p className="text-xs md:text-base text-muted-foreground">
-                  Exploring how to integrate security practices within DevOps processes for secure development
+                  Analyzing malicious software to understand their behavior, capabilities, and developing countermeasures
                 </p>
               </CardContent>
             </Card>
