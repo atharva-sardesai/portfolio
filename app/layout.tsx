@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Cyber with Atharva",
-  description: "Cybersecurity enthusiast and cloud security professional",
+  description: "Cybersecurity Enthusiast and Cloud Security Professional",
   icons: {
     icon: [
       {
