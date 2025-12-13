@@ -2,6 +2,21 @@ import Link from "next/link"
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Blog Posts",
+  description: "Long-form writeups on Cloud Security, DevSecOps, automation, and AI security—built from hands-on labs and real work.",
+  openGraph: {
+    title: "Blog Posts | Cyber with Atharva",
+    description: "Long-form writeups on Cloud Security, DevSecOps, automation, and AI security—built from hands-on labs and real work.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog Posts | Cyber with Atharva",
+    description: "Long-form writeups on Cloud Security, DevSecOps, automation, and AI security.",
+  },
+}
 
 interface Post {
   title: string
@@ -114,48 +129,105 @@ async function getPosts(): Promise<Post[]> {
 
 export default async function BlogPage() {
   const posts = await getPosts()
+  const featuredPosts = posts.slice(0, 3)
+  const otherPosts = posts.slice(3)
 
   return (
     <div className="container py-10">
-      <h1 className="text-4xl font-bold mb-8">Blog Posts</h1>
+      <div className="max-w-3xl mx-auto space-y-8 mb-12">
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Blog Posts</h1>
+        <p className="text-lg text-muted-foreground">
+          Long-form writeups on Cloud Security, DevSecOps, automation, and AI security—built from hands-on labs and real work.
+        </p>
+      </div>
+      
       {posts.length === 0 ? (
-        <p className="text-muted-foreground">No blog posts available at the moment.</p>
+        <p className="text-muted-foreground text-center">No blog posts available at the moment.</p>
       ) : (
-        <div className="space-y-6">
-          {posts.map((post: Post) => (
-            <Card key={post.guid} className="overflow-hidden">
-              <CardContent className="p-6">
-                <div className="flex flex-col md:flex-row gap-6">
-                  <div className="flex-1 order-2 md:order-1">
-                    <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      Published on {new Date(post.pubDate).toLocaleDateString()}
-                    </p>
-                    <div
-                      className="text-muted-foreground mb-4 line-clamp-3"
-                      dangerouslySetInnerHTML={{ 
-                        __html: post.content ? stripHtml(post.content).slice(0, 200) + "..." : ''
-                      }}
-                    />
-                    <Button asChild>
-                      <Link href={post.link} target="_blank" rel="noopener noreferrer">
-                        Read on Medium
-                      </Link>
-                    </Button>
-                  </div>
-                  <div className="w-full md:w-1/3 h-48 relative order-1 md:order-2">
-                    <Image
-                      src={extractImageUrl(post.content, post.imageUrl, post.link, post.guid)}
-                      alt={post.title}
-                      fill
-                      className="object-cover rounded-lg"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="space-y-12">
+          {featuredPosts.length > 0 && (
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold mb-6">Featured Posts</h2>
+              <div className="space-y-6">
+                {featuredPosts.map((post: Post) => (
+                  <Card key={post.guid} className="overflow-hidden">
+                    <CardContent className="p-6">
+                      <div className="flex flex-col md:flex-row gap-6">
+                        <div className="flex-1 order-2 md:order-1">
+                          <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
+                          <p className="text-sm text-muted-foreground mb-4">
+                            Published on {new Date(post.pubDate).toLocaleDateString()}
+                          </p>
+                          <div
+                            className="text-muted-foreground mb-4 line-clamp-3"
+                            dangerouslySetInnerHTML={{ 
+                              __html: post.content ? stripHtml(post.content).slice(0, 200) + "..." : ''
+                            }}
+                          />
+                          <Button asChild>
+                            <Link href={post.link} target="_blank" rel="noopener noreferrer">
+                              Read on Medium
+                            </Link>
+                          </Button>
+                        </div>
+                        <div className="w-full md:w-1/3 h-48 relative order-1 md:order-2">
+                          <Image
+                            src={extractImageUrl(post.content, post.imageUrl, post.link, post.guid)}
+                            alt={post.title}
+                            fill
+                            className="object-cover rounded-lg"
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                          />
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          {otherPosts.length > 0 && (
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold mb-6">All Posts</h2>
+              <div className="space-y-6">
+                {otherPosts.map((post: Post) => (
+                  <Card key={post.guid} className="overflow-hidden">
+                    <CardContent className="p-6">
+                      <div className="flex flex-col md:flex-row gap-6">
+                        <div className="flex-1 order-2 md:order-1">
+                          <h2 className="text-2xl font-bold mb-2">{post.title}</h2>
+                          <p className="text-sm text-muted-foreground mb-4">
+                            Published on {new Date(post.pubDate).toLocaleDateString()}
+                          </p>
+                          <div
+                            className="text-muted-foreground mb-4 line-clamp-3"
+                            dangerouslySetInnerHTML={{ 
+                              __html: post.content ? stripHtml(post.content).slice(0, 200) + "..." : ''
+                            }}
+                          />
+                          <Button asChild>
+                            <Link href={post.link} target="_blank" rel="noopener noreferrer">
+                              Read on Medium
+                            </Link>
+                          </Button>
+                        </div>
+                        <div className="w-full md:w-1/3 h-48 relative order-1 md:order-2">
+                          <Image
+                            src={extractImageUrl(post.content, post.imageUrl, post.link, post.guid)}
+                            alt={post.title}
+                            fill
+                            className="object-cover rounded-lg"
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                          />
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

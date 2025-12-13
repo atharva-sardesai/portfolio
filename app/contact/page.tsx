@@ -12,6 +12,9 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { ContactForm } from "@/components/contact-form"
 
+// Note: Metadata export doesn't work with "use client" components
+// SEO metadata is handled in the root layout
+
 export default function ContactPage() {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
