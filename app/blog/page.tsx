@@ -5,16 +5,16 @@ import { Button } from "@/components/ui/button"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Blog Posts",
-  description: "Long-form writeups on Cloud Security, DevSecOps, automation, and AI security—built from hands-on labs and real work.",
+  title: "Insights & Research",
+  description: "In-depth analysis on cloud security strategy, GRC frameworks, AI governance, and enterprise risk—informed by real-world consulting engagements.",
   openGraph: {
-    title: "Blog Posts | Cyber with Atharva",
-    description: "Long-form writeups on Cloud Security, DevSecOps, automation, and AI security—built from hands-on labs and real work.",
+    title: "Insights & Research | Cyber with Atharva",
+    description: "In-depth analysis on cloud security strategy, GRC frameworks, AI governance, and enterprise risk.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog Posts | Cyber with Atharva",
-    description: "Long-form writeups on Cloud Security, DevSecOps, automation, and AI security.",
+    title: "Insights & Research | Cyber with Atharva",
+    description: "In-depth analysis on cloud security strategy, GRC frameworks, AI governance, and enterprise risk.",
   },
 }
 
@@ -135,9 +135,9 @@ export default async function BlogPage() {
   return (
     <div className="container py-10">
       <div className="max-w-3xl mx-auto space-y-8 mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Blog Posts</h1>
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Insights & Research</h1>
         <p className="text-lg text-muted-foreground">
-          Long-form writeups on Cloud Security, DevSecOps, automation, and AI security—built from hands-on labs and real work.
+          In-depth analysis on cloud security strategy, GRC frameworks, AI governance, and enterprise risk—informed by real-world consulting engagements.
         </p>
       </div>
       

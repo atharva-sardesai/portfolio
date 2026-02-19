@@ -77,20 +77,21 @@ export default function ContactPage() {
     <div className="container px-4 md:px-6 py-4 md:py-10">
       <div className="space-y-3 md:space-y-6">
         <div className="space-y-1 md:space-y-2">
-          <h1 className="text-xl md:text-4xl font-bold tracking-tight">Get in Touch</h1>
-          <p className="text-sm md:text-xl text-muted-foreground">Let's connect and explore opportunities together</p>
+          <h1 className="text-xl md:text-4xl font-bold tracking-tight">Request a Strategy Consultation</h1>
+          <p className="text-sm md:text-xl text-muted-foreground">Let's discuss how to strengthen your organization's security posture and risk management strategy</p>
         </div>
 
         <div className="grid gap-3 md:gap-6 md:grid-cols-2">
           <Card className="w-full">
             <CardContent className="p-3 md:p-6 space-y-3 md:space-y-4">
               <div className="space-y-1 md:space-y-2">
-                <h2 className="text-lg md:text-2xl font-bold">For Recruiters</h2>
+                <h2 className="text-lg md:text-2xl font-bold">For Recruiters & Partners</h2>
                 <p className="text-xs md:text-base text-muted-foreground">
-                  Looking for a cybersecurity professional? Download my resume or connect on LinkedIn.
+                  Interested in my consulting expertise? Download my credentials or connect on LinkedIn.
                 </p>
               </div>
               <div className="flex flex-col gap-2">
+                {/* TODO: Replace Atharva_Resume.pdf with updated Consultant-level PDF */}
                 <Button asChild className="w-full text-sm md:text-base">
                   <Link href="/Atharva_Resume.pdf" download>
                     <Download className="mr-2 h-3 w-3 md:h-4 md:w-4" />
@@ -110,9 +111,9 @@ export default function ContactPage() {
           <Card className="w-full">
             <CardContent className="p-3 md:p-6 space-y-3 md:space-y-4">
               <div className="space-y-1 md:space-y-2">
-                <h2 className="text-lg md:text-2xl font-bold">For Collaboration</h2>
+                <h2 className="text-lg md:text-2xl font-bold">For Collaboration & Advisory</h2>
                 <p className="text-xs md:text-base text-muted-foreground">
-                  Interested in collaborating on cybersecurity projects or research? Let's connect!
+                  Interested in cybersecurity consulting, research partnerships, or strategy advisory? Let's connect.
                 </p>
               </div>
               <div className="flex flex-col gap-2">
@@ -164,7 +165,7 @@ export default function ContactPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Medium Blog
+                    Medium — Insights & Research
                   </Link>
                 </li>
                 <li>
@@ -174,7 +175,27 @@ export default function ContactPage() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Twitter Profile
+                    X (Twitter)
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="https://www.youtube.com/@beyondroot"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    YouTube — beyond root
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="https://www.youtube.com/@TheNadkarnees"
+                    className="text-muted-foreground hover:text-foreground transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    YouTube — The Nadkarnees
                   </Link>
                 </li>
               </ul>

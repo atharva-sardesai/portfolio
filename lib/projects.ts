@@ -1,15 +1,16 @@
 // Projects data structure - Operator-style format
-// Problem → Approach → Tools → Outcome → Key learning
+// Problem → Approach → Tools → Outcome → Key learning → Business Impact
 
 export interface Project {
   id: string
   title: string
-  type: "project" | "certification" | "experience"
+  type: "project" | "certification" | "experience" | "research"
   problem: string
   approach: string
   tools: string[]
   outcome: string
   learning: string
+  businessImpact?: string
   featured?: boolean
 }
 
@@ -23,6 +24,31 @@ export const projects: Project[] = [
     tools: ["GitHub Actions", "Trivy", "Snyk", "Docker", "AWS"],
     outcome: "Reduced security vulnerabilities in production by 60% and enabled shift-left security practices in the development lifecycle.",
     learning: "Security automation in CI/CD requires balancing thoroughness with speed. Parallel scanning stages and caching strategies are critical.",
+    businessImpact: "Enabled shift-left security that reduced production risk and ensured regulatory compliance for enterprise-scale deployments.",
+    featured: true,
+  },
+  {
+    id: "ai-intake-sop",
+    title: "AI Intake Standard Operating Procedure (SOP)",
+    type: "project",
+    problem: "Enterprises adopting AI/LLM tools lack standardized governance processes, exposing them to data privacy, compliance, and operational risks.",
+    approach: "Designed and authored a comprehensive AI Intake SOP framework covering risk classification, data handling requirements, vendor assessment criteria, and approval workflows for enterprise AI tool adoption.",
+    tools: ["GRC Frameworks", "NIST AI RMF", "Risk Assessment", "Policy Design", "Compliance Mapping"],
+    outcome: "Created a repeatable governance framework that enables organizations to evaluate and onboard AI tools with consistent risk controls and audit trails.",
+    learning: "Effective AI governance requires balancing innovation velocity with risk controls—overly restrictive policies stifle adoption, while lax governance creates unacceptable exposure.",
+    businessImpact: "Reduced unvetted AI tool proliferation and established a scalable governance process that aligns AI adoption with enterprise risk appetite and regulatory requirements.",
+    featured: true,
+  },
+  {
+    id: "ai-security-scanner",
+    title: "Automated AI Security Scanner",
+    type: "project",
+    problem: "Manual security assessments of AI/LLM deployments are time-intensive and inconsistent, leaving gaps in coverage across enterprise AI portfolios.",
+    approach: "Built an automated security scanning tool that evaluates AI/LLM applications against common vulnerability patterns including prompt injection, data leakage, model manipulation, and insecure API configurations.",
+    tools: ["Python", "OWASP LLM Top 10", "API Security", "Automated Testing", "Risk Scoring"],
+    outcome: "Automated the detection of critical AI security vulnerabilities, enabling continuous assessment across multiple AI deployments with consistent risk scoring.",
+    learning: "AI security scanning must evolve with the threat landscape—static rule-based checks are insufficient; adaptive testing frameworks that account for model-specific behaviors are essential.",
+    businessImpact: "Enabled proactive risk mitigation for AI deployments, reducing manual assessment overhead and providing leadership with quantifiable risk metrics for informed decision-making.",
     featured: true,
   },
   {
@@ -51,4 +77,3 @@ export const projects: Project[] = [
 
 export const featuredProjects = projects.filter(p => p.featured)
 export const otherProjects = projects.filter(p => !p.featured)
-

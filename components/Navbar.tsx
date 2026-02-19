@@ -22,10 +22,10 @@ export default function Navbar() {
           <div className="flex items-center justify-end">
             <nav className="flex items-center space-x-1 md:space-x-2 pr-0">
               <Button asChild variant="ghost" className="text-xs md:text-base px-2 md:px-4">
-                <Link href="/blog">Blog</Link>
+                <Link href="/blog">Insights</Link>
               </Button>
               <Button asChild variant="ghost" className="text-xs md:text-base px-2 md:px-4">
-                <Link href="/contact">Get in Touch</Link>
+                <Link href="/contact">Request a Consultation</Link>
               </Button>
             </nav>
           </div>

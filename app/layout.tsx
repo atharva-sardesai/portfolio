@@ -9,11 +9,11 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: {
-    default: "Cyber with Atharva | Cloud Security & DevSecOps Professional",
+    default: "Cyber with Atharva | Cybersecurity Consultant & Cloud Security Strategist",
     template: "%s | Cyber with Atharva"
   },
-  description: "Cybersecurity & Cloud Security professional building secure, automated, cloud-native systems. Sharing real-world labs, insights, and learnings on Cloud Security, DevSecOps, and AI/LLM Security.",
-  keywords: ["Cloud Security", "DevSecOps", "Cybersecurity", "AWS", "CI/CD Security", "AI Security", "LLM Security", "Cloud Architecture", "VAPT", "Threat Intelligence"],
+  description: "Cybersecurity Consultant specializing in Cloud Security, GRC, DevSecOps strategy, and AI governance. Bridging the gap between technical infrastructure and business risk for enterprise organizations.",
+  keywords: ["Cybersecurity Consultant", "Cloud Security Strategy", "GRC", "Governance Risk Compliance", "DevSecOps", "AI Governance", "Enterprise Security", "Cloud Architecture", "Zero Trust", "Risk Advisory"],
   authors: [{ name: "Atharva" }],
   creator: "Atharva",
   openGraph: {
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://cyberwithatharva.github.io/cyber-portfolio",
     siteName: "Cyber with Atharva",
-    title: "Cyber with Atharva | Cloud Security & DevSecOps Professional",
-    description: "Cybersecurity & Cloud Security professional building secure, automated, cloud-native systems. Sharing real-world labs, insights, and learnings.",
+    title: "Cyber with Atharva | Cybersecurity Consultant & Cloud Security Strategist",
+    description: "Cybersecurity Consultant specializing in Cloud Security, GRC, DevSecOps strategy, and AI governance for enterprise organizations.",
     images: [
       {
         url: "/icon.png",
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cyber with Atharva | Cloud Security & DevSecOps Professional",
-    description: "Cybersecurity & Cloud Security professional building secure, automated, cloud-native systems.",
+    title: "Cyber with Atharva | Cybersecurity Consultant & Cloud Security Strategist",
+    description: "Cybersecurity Consultant specializing in Cloud Security, GRC, DevSecOps strategy, and AI governance.",
     creator: "@NullSecures",
     images: ["/icon.png"],
   },

@@ -65,38 +65,38 @@ export default async function HomePage() {
               {/* Trust Badge */}
               <div className="flex justify-center md:justify-start">
                 <Badge variant="outline" className="text-xs md:text-sm px-3 py-1">
-                  Cyber Security Consultant @ Cummins India
+                  Cybersecurity Consultant & Strategist
                 </Badge>
               </div>
-              
+
               {/* Main Headline */}
               <h1 className="text-2xl md:text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-                <span className="block">Cybersecurity & Cloud Security</span>
-                <span className="block text-primary">professional building secure, automated, cloud-native systems</span>
+                <span className="block">Cybersecurity Consultant</span>
+                <span className="block text-primary">Cloud Security & DevSecOps Strategist</span>
               </h1>
-              
+
               {/* Subheadline */}
               <p className="text-base md:text-lg text-muted-foreground">
-                Sharing real-world labs, insights, and learnings.
+                Bridging the gap between technical infrastructure and business risk for Fortune 500 enterprises.
               </p>
               <p className="text-sm md:text-base text-muted-foreground font-medium">
-                Cloud Security | DevSecOps | AI & LLM Security | Cyber with Atharva
+                GRC & Cloud Security | DevSecOps | AI Governance | Enterprise Risk Strategy
               </p>
-              
+
               {/* Primary CTAs */}
               <div className="flex flex-col sm:flex-row gap-2 md:gap-3 justify-center md:justify-start pt-2">
                 <Button asChild className="w-full sm:w-auto" size="lg">
                   <a href="#projects">View Projects</a>
                 </Button>
                 <Button variant="outline" asChild className="w-full sm:w-auto" size="lg">
-                  <a href="#blogs">Read Blogs</a>
+                  <a href="#insights">Insights & Research</a>
                 </Button>
               </div>
-              
+
               {/* Secondary CTA */}
               <div className="flex justify-center md:justify-start">
                 <Button variant="ghost" asChild className="text-sm">
-                  <a href="#contact">Get in Touch</a>
+                  <a href="#contact">Request a Strategy Consultation</a>
                 </Button>
               </div>
               
@@ -140,34 +140,35 @@ export default async function HomePage() {
           <div className="text-center space-y-4 max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">About</h2>
             <p className="text-base md:text-lg text-muted-foreground">
-              I'm a Cyber Security Consultant at Cummins India and a final-year B.Tech student at VIIT, 
-              focused on building secure, automated, cloud-native systems. My work spans Cloud Security, 
-              DevSecOps, and emerging AI/LLM security challenges.
+              Cybersecurity Consultant at Cummins India, where I advise on enterprise cloud security architecture,
+              GRC frameworks, and DevSecOps transformation. I specialize in translating complex technical risks into
+              actionable business strategies for organizations navigating cloud adoption, regulatory compliance, and
+              emerging AI threats.
             </p>
           </div>
-          
+
           <div className="max-w-3xl mx-auto">
-            <h3 className="text-xl md:text-2xl font-semibold mb-4 text-center md:text-left">What I'm focused on now</h3>
+            <h3 className="text-xl md:text-2xl font-semibold mb-4 text-center md:text-left">Core Practice Areas</h3>
             <ul className="space-y-3 text-sm md:text-base text-muted-foreground">
               <li className="flex items-start gap-3">
                 <span className="text-primary mt-1">•</span>
-                <span><strong className="text-foreground">Cloud Security & Identity:</strong> Securing cloud infrastructure, IAM policies, and identity management across AWS environments.</span>
+                <span><strong className="text-foreground">Governance, Risk & Compliance (GRC):</strong> Designing and implementing security governance frameworks, risk assessments, and compliance strategies aligned with ISO 27001, NIST, and industry regulations.</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-primary mt-1">•</span>
-                <span><strong className="text-foreground">DevSecOps & Secure CI/CD:</strong> Integrating security into development workflows, automated scanning, and secure deployment pipelines.</span>
+                <span><strong className="text-foreground">Cloud Security Architecture:</strong> Securing enterprise cloud infrastructure, IAM policy design, and zero-trust architecture across AWS and multi-cloud environments.</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-primary mt-1">•</span>
-                <span><strong className="text-foreground">Vulnerability Assessment (VAPT):</strong> Identifying and remediating security vulnerabilities in applications and infrastructure.</span>
+                <span><strong className="text-foreground">DevSecOps Strategy:</strong> Embedding security into CI/CD pipelines and development workflows to enable shift-left security at enterprise scale.</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-primary mt-1">•</span>
-                <span><strong className="text-foreground">Threat Intelligence & Detection:</strong> Building detection capabilities and leveraging threat intelligence for proactive security.</span>
+                <span><strong className="text-foreground">AI Governance & LLM Security:</strong> Developing governance frameworks and security controls for enterprise AI/LLM deployments, addressing data privacy, model integrity, and regulatory risk.</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-primary mt-1">•</span>
-                <span><strong className="text-foreground">AI/LLM Security:</strong> Understanding and mitigating practical security risks in AI/LLM deployments and applications.</span>
+                <span><strong className="text-foreground">Enterprise Risk Strategy:</strong> Conducting threat landscape assessments and building risk-informed security programs that align with business objectives.</span>
               </li>
             </ul>
           </div>
@@ -214,6 +215,12 @@ export default async function HomePage() {
                       <p className="font-semibold text-foreground mb-1">Outcome</p>
                       <p className="text-muted-foreground">{project.outcome}</p>
                     </div>
+                    {project.businessImpact && (
+                      <div>
+                        <p className="font-semibold text-primary mb-1">Business Impact</p>
+                        <p className="text-muted-foreground">{project.businessImpact}</p>
+                      </div>
+                    )}
                     <div>
                       <p className="font-semibold text-foreground mb-1">Key Learning</p>
                       <p className="text-muted-foreground italic">{project.learning}</p>
@@ -225,16 +232,77 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section id="blogs" className="py-12 md:py-16 space-y-8 md:space-y-12">
+        <section id="insights" className="py-12 md:py-16 space-y-8 md:space-y-12">
           <div className="text-center space-y-4 max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Latest Blog Posts</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Insights & Research</h2>
             <p className="text-base md:text-lg text-muted-foreground">
-              Long-form writeups on Cloud Security, DevSecOps, automation, and AI security—built from hands-on labs and real work.
+              In-depth analysis on cloud security strategy, GRC frameworks, AI governance, and enterprise risk—informed by real-world consulting engagements.
             </p>
           </div>
+
+          {/* Featured Research */}
+          <div className="max-w-3xl mx-auto">
+            <Card className="border-primary/30 bg-primary/5">
+              <CardContent className="p-6 space-y-3">
+                <div className="flex items-center gap-2">
+                  <Badge variant="default">Research Paper</Badge>
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold">Zero Trust Reference Architecture for OT Networks</h3>
+                <p className="text-sm md:text-base text-muted-foreground">
+                  A comprehensive reference architecture for implementing Zero Trust security principles in Operational Technology (OT) environments, addressing the unique challenges of securing industrial control systems while maintaining operational reliability.
+                </p>
+                <Button variant="outline" asChild>
+                  <Link href="/blog">Read the Full Paper</Link>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Video Channels */}
+          <div className="max-w-3xl mx-auto">
+            <h3 className="text-xl md:text-2xl font-semibold mb-4 text-center">Video & Media</h3>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <Card>
+                <CardContent className="p-5 space-y-2">
+                  <div className="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M23.5 6.2c-.3-1-1-1.8-2-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.5.6c-1 .3-1.7 1.1-2 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1 1 1.8 2 2.1 1.9.6 9.5.6 9.5.6s7.6 0 9.5-.6c1-.3 1.7-1.1 2-2.1.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8z"/>
+                      <path d="M9.6 15.6V8.4l6.4 3.6-6.4 3.6z" fill="white"/>
+                    </svg>
+                    <h4 className="font-semibold">beyond root</h4>
+                  </div>
+                  <p className="text-sm text-muted-foreground">Cybersecurity deep-dives, technical walkthroughs, and security research breakdowns.</p>
+                  <Button variant="link" asChild className="p-0 text-sm">
+                    <Link href="https://www.youtube.com/@beyondroot" target="_blank" rel="noopener noreferrer">
+                      Watch on YouTube →
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="p-5 space-y-2">
+                  <div className="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-red-500" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M23.5 6.2c-.3-1-1-1.8-2-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.5.6c-1 .3-1.7 1.1-2 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1 1 1.8 2 2.1 1.9.6 9.5.6 9.5.6s7.6 0 9.5-.6c1-.3 1.7-1.1 2-2.1.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8z"/>
+                      <path d="M9.6 15.6V8.4l6.4 3.6-6.4 3.6z" fill="white"/>
+                    </svg>
+                    <h4 className="font-semibold">The Nadkarnees</h4>
+                  </div>
+                  <p className="text-sm text-muted-foreground">Creative content and perspectives at the intersection of technology and culture.</p>
+                  <Button variant="link" asChild className="p-0 text-sm">
+                    <Link href="https://www.youtube.com/@TheNadkarnees" target="_blank" rel="noopener noreferrer">
+                      Watch on YouTube →
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Recent Posts */}
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {recentPosts.length === 0 ? (
-              <p className="text-muted-foreground col-span-full text-center">No blog posts available at the moment.</p>
+              <p className="text-muted-foreground col-span-full text-center">No posts available at the moment.</p>
             ) : (
               recentPosts.map((post: Post) => (
                 <Card key={post.guid}>
@@ -270,7 +338,7 @@ export default async function HomePage() {
           </div>
           <div className="text-center pt-4">
             <Button asChild size="lg">
-              <Link href="/blog">View All Blog Posts</Link>
+              <Link href="/blog">View All Insights</Link>
             </Button>
           </div>
         </section>
@@ -281,7 +349,7 @@ export default async function HomePage() {
             <div className="space-y-3 md:space-y-4 col-span-2 md:col-span-1">
               <h3 className="text-base md:text-lg font-bold">Cyber with Atharva</h3>
               <p className="text-xs md:text-sm text-muted-foreground">
-                Building secure, automated, cloud-native systems through expertise, innovation, and education.
+                Cybersecurity consulting, cloud security strategy, and enterprise risk advisory for organizations navigating complex threat landscapes.
               </p>
             </div>
             <div className="space-y-3 md:space-y-4">
@@ -294,7 +362,7 @@ export default async function HomePage() {
                 </li>
                 <li>
                   <Link href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Blog
+                    Insights & Research
                   </Link>
                 </li>
                 <li>
@@ -342,17 +410,31 @@ export default async function HomePage() {
                     Medium
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    href="https://www.youtube.com/@beyondroot"
+                    className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M23.5 6.2c-.3-1-1-1.8-2-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.5.6c-1 .3-1.7 1.1-2 2.1C0 8.1 0 12 0 12s0 3.9.5 5.8c.3 1 1 1.8 2 2.1 1.9.6 9.5.6 9.5.6s7.6 0 9.5-.6c1-.3 1.7-1.1 2-2.1.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8z"/>
+                      <path d="M9.6 15.6V8.4l6.4 3.6-6.4 3.6z" fill="white"/>
+                    </svg>
+                    YouTube (beyond root)
+                  </Link>
+                </li>
               </ul>
             </div>
             <div className="space-y-3 md:space-y-4">
-              <h3 className="text-base md:text-lg font-bold">Get in Touch</h3>
+              <h3 className="text-base md:text-lg font-bold">Request a Strategy Consultation</h3>
               <Button asChild variant="outline" size="sm" className="w-full">
-                <Link href="/contact">Contact Me</Link>
+                <Link href="/contact">Schedule a Consultation</Link>
               </Button>
             </div>
           </div>
           <div className="mt-6 md:mt-8 border-t pt-6 md:pt-8 text-center">
-            <p className="text-xs md:text-sm text-muted-foreground">© 2024 Cyber with Atharva. All rights reserved.</p>
+            <p className="text-xs md:text-sm text-muted-foreground">© 2026 Cyber with Atharva. All rights reserved.</p>
           </div>
         </div>
       </footer>
