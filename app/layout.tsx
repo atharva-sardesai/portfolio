@@ -9,33 +9,32 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: {
-    default: "Cyber with Atharva | Cybersecurity Consultant & Cloud Security Strategist",
-    template: "%s | Cyber with Atharva"
+    default: "Atharva Sardesai | Enterprise Security",
+    template: "%s | Atharva Sardesai"
   },
-  description: "Cybersecurity Consultant specializing in Cloud Security, GRC, DevSecOps strategy, and AI governance. Bridging the gap between technical infrastructure and business risk for enterprise organizations.",
-  keywords: ["Cybersecurity Consultant", "Cloud Security Strategy", "GRC", "Governance Risk Compliance", "DevSecOps", "AI Governance", "Enterprise Security", "Cloud Architecture", "Zero Trust", "Risk Advisory"],
+  description: "Enterprise security practitioner writing on cyber risk, governance, and the gap between strategy and reality.",
   authors: [{ name: "Atharva" }],
   creator: "Atharva",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://cyberwithatharva.github.io/cyber-portfolio",
-    siteName: "Cyber with Atharva",
-    title: "Cyber with Atharva | Cybersecurity Consultant & Cloud Security Strategist",
-    description: "Cybersecurity Consultant specializing in Cloud Security, GRC, DevSecOps strategy, and AI governance for enterprise organizations.",
+    url: "https://atharvasardesai.com",
+    siteName: "Atharva Sardesai",
+    title: "Atharva Sardesai | Enterprise Security",
+    description: "Enterprise security practitioner writing on cyber risk, governance, and the gap between strategy and reality.",
     images: [
       {
         url: "/icon.png",
         width: 1200,
         height: 630,
-        alt: "Cyber with Atharva",
+        alt: "Atharva Sardesai",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cyber with Atharva | Cybersecurity Consultant & Cloud Security Strategist",
-    description: "Cybersecurity Consultant specializing in Cloud Security, GRC, DevSecOps strategy, and AI governance.",
+    title: "Atharva Sardesai | Enterprise Security",
+    description: "Enterprise security practitioner writing on cyber risk, governance, and the gap between strategy and reality.",
     creator: "@NullSecures",
     images: ["/icon.png"],
   },
@@ -52,7 +51,7 @@ export const metadata: Metadata = {
       },
     ],
   },
-  metadataBase: new URL('https://cyberwithatharva.github.io/cyber-portfolio'),
+  metadataBase: new URL('https://atharvasardesai.com'),
   alternates: {
     canonical: "/",
   },

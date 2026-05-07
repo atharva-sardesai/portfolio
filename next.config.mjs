@@ -21,6 +21,21 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "cyberwithatharva.com",
+          },
+        ],
+        destination: "https://atharvasardesai.com/:path*",
+        permanent: true,
+      },
+    ]
+  },
 }
 
 mergeConfig(nextConfig, userConfig)

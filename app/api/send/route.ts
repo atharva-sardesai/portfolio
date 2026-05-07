@@ -1,16 +1,17 @@
 import { NextResponse } from "next/server"
 import { Resend } from "resend"
 
-// Initialize Resend with API key from Amplify environment variables
-const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY)
-
 export async function POST(request: Request) {
   try {
     const { name, email, message } = await request.json()
 
-    if (!process.env.NEXT_PUBLIC_RESEND_API_KEY) {
+    const resendApiKey = process.env.NEXT_PUBLIC_RESEND_API_KEY
+
+    if (!resendApiKey) {
       throw new Error("Missing Resend API key")
     }
+
+    const resend = new Resend(resendApiKey)
 
     const { data, error } = await resend.emails.send({
       from: "Contact Form <onboarding@resend.dev>",

@@ -1,204 +1,47 @@
-"use client"
-
-import type React from "react"
-
-import { useState } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Linkedin, Twitter, Download, Mail } from "lucide-react"
-import { useToast } from "@/components/ui/use-toast"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
+import { Linkedin } from "lucide-react"
 import { ContactForm } from "@/components/contact-form"
 
-// Note: Metadata export doesn't work with "use client" components
-// SEO metadata is handled in the root layout
-
 export default function ContactPage() {
-  const { toast } = useToast()
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  })
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
-
-      const data = await response.json()
-
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to send message')
-      }
-
-      toast({
-        title: "Success!",
-        description: "Your message has been sent successfully.",
-      })
-
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        message: ''
-      })
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: error instanceof Error ? error.message : "Failed to send message. Please try again.",
-        variant: "destructive",
-      })
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
-  }
-
   return (
     <div className="container px-4 md:px-6 py-4 md:py-10">
       <div className="space-y-3 md:space-y-6">
         <div className="space-y-1 md:space-y-2">
-          <h1 className="text-xl md:text-4xl font-bold tracking-tight">Request a Strategy Consultation</h1>
-          <p className="text-sm md:text-xl text-muted-foreground">Let's discuss how to strengthen your organization's security posture and risk management strategy</p>
+          <h1 className="text-xl md:text-4xl font-bold tracking-tight">Get in touch</h1>
+          <p className="text-sm md:text-xl text-muted-foreground">
+            For questions about my writing or professional conversations — reach out via LinkedIn or the form below.
+          </p>
         </div>
 
         <div className="grid gap-3 md:gap-6 md:grid-cols-2">
           <Card className="w-full">
             <CardContent className="p-3 md:p-6 space-y-3 md:space-y-4">
               <div className="space-y-1 md:space-y-2">
-                <h2 className="text-lg md:text-2xl font-bold">For Recruiters & Partners</h2>
+                <h2 className="text-lg md:text-2xl font-bold">LinkedIn</h2>
                 <p className="text-xs md:text-base text-muted-foreground">
-                  Interested in my consulting expertise? Download my credentials or connect on LinkedIn.
+                  The best place to reach out about writing, enterprise security, or professional conversations.
                 </p>
               </div>
-              <div className="flex flex-col gap-2">
-                {/* TODO: Replace Atharva_Resume.pdf with updated Consultant-level PDF */}
-                <Button asChild className="w-full text-sm md:text-base">
-                  <Link href="/Atharva_Resume.pdf" download>
-                    <Download className="mr-2 h-3 w-3 md:h-4 md:w-4" />
-                    Download Resume
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" className="w-full text-sm md:text-base">
-                  <Link href="https://www.linkedin.com/in/cyberwithatharva/" target="_blank" rel="noopener noreferrer">
-                    <Linkedin className="mr-2 h-3 w-3 md:h-4 md:w-4" />
-                    View LinkedIn Profile
-                  </Link>
-                </Button>
-              </div>
+              <Button asChild variant="outline" className="w-full text-sm md:text-base">
+                <Link href="https://www.linkedin.com/in/atharvasardesai" target="_blank" rel="noopener noreferrer">
+                  <Linkedin className="mr-2 h-3 w-3 md:h-4 md:w-4" />
+                  View LinkedIn Profile
+                </Link>
+              </Button>
             </CardContent>
           </Card>
 
           <Card className="w-full">
             <CardContent className="p-3 md:p-6 space-y-3 md:space-y-4">
               <div className="space-y-1 md:space-y-2">
-                <h2 className="text-lg md:text-2xl font-bold">For Collaboration & Advisory</h2>
+                <h2 className="text-lg md:text-2xl font-bold">Send a message</h2>
                 <p className="text-xs md:text-base text-muted-foreground">
-                  Interested in cybersecurity consulting, research partnerships, or strategy advisory? Let's connect.
-                </p>
-              </div>
-              <div className="flex flex-col gap-2">
-                <Button asChild className="w-full text-sm md:text-base">
-                  <Link href="mailto:cyberwithatharva@gmail.com">
-                    <Mail className="mr-2 h-3 w-3 md:h-4 md:w-4" />
-                    Send Email
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" className="w-full text-sm md:text-base">
-                  <Link href="https://www.linkedin.com/in/cyberwithatharva/" target="_blank" rel="noopener noreferrer">
-                    <Linkedin className="mr-2 h-3 w-3 md:h-4 md:w-4" />
-                    Connect on LinkedIn
-                  </Link>
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        <div className="grid gap-3 md:gap-6">
-          <Card className="w-full">
-            <CardContent className="p-3 md:p-6 space-y-3 md:space-y-4">
-              <div className="space-y-1 md:space-y-2">
-                <h2 className="text-lg md:text-2xl font-bold">Send Me a Message</h2>
-                <p className="text-xs md:text-base text-muted-foreground">
-                  Have a question or want to discuss something? Fill out the form below.
+                  Use the form below for questions or professional notes.
                 </p>
               </div>
               <ContactForm />
-            </CardContent>
-          </Card>
-        </div>
-
-        <div className="pt-3 md:pt-6">
-          <Card className="w-full">
-            <CardContent className="p-3 md:p-6 space-y-3 md:space-y-4">
-              <div className="space-y-1 md:space-y-2">
-                <h2 className="text-lg md:text-2xl font-bold">Additional Contact Information</h2>
-                <p className="text-xs md:text-base text-muted-foreground">
-                  You can also find me on these platforms:
-                </p>
-              </div>
-              <ul className="space-y-2 text-xs md:text-base">
-                <li>
-                  <Link
-                    href="https://medium.com/@cyberwithatharva"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Medium — Insights & Research
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="https://x.com/NullSecures"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    X (Twitter)
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="https://www.youtube.com/@beyondroot"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    YouTube — beyond root
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="https://www.youtube.com/@TheNadkarnees"
-                    className="text-muted-foreground hover:text-foreground transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    YouTube — The Nadkarnees
-                  </Link>
-                </li>
-              </ul>
             </CardContent>
           </Card>
         </div>
@@ -206,4 +49,3 @@ export default function ContactPage() {
     </div>
   )
 }
-
