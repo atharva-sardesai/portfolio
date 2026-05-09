@@ -18,38 +18,46 @@ module.exports = {
     },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        bg: "#F7F4EF",
+        "bg-subtle": "#EFEBE4",
+        "text-primary": "#1A1A1A",
+        "text-secondary": "#6B6560",
+        "text-tertiary": "#9C9590",
+        accent: {
+          DEFAULT: "#C4391C",
+          hover: "#A82E16",
+          foreground: "#F7F4EF",
+        },
+        "accent-hover": "#A82E16",
+        "border-strong": "#C8C3BC",
+        border: "#E2DDD8",
+        input: "#E2DDD8",
+        ring: "#C4391C",
+        background: "#F7F4EF",
+        foreground: "#1A1A1A",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "#C4391C",
+          foreground: "#F7F4EF",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "#EFEBE4",
+          foreground: "#1A1A1A",
         },
         destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
+          DEFAULT: "#C4391C",
+          foreground: "#F7F4EF",
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "#EFEBE4",
+          foreground: "#6B6560",
         },
         popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+          DEFAULT: "#F7F4EF",
+          foreground: "#1A1A1A",
         },
         card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+          DEFAULT: "#EFEBE4",
+          foreground: "#1A1A1A",
         },
       },
       borderRadius: {
@@ -75,4 +83,3 @@ module.exports = {
   },
   plugins: [require("tailwindcss-animate")],
 }
-

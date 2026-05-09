@@ -1,11 +1,22 @@
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Playfair_Display, DM_Sans } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import Navbar from "@/components/Navbar"
 
-const inter = Inter({ subsets: ["latin"] })
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-heading",
+})
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-body",
+})
 
 export const metadata: Metadata = {
   title: {
@@ -65,7 +76,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body className={`${inter.className} min-h-screen bg-background`}>
+      <body className={`${playfair.variable} ${dmSans.variable}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -73,7 +84,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          <main className="container mx-auto">
+          <main>
             {children}
           </main>
           <Toaster />
