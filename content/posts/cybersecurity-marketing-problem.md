@@ -3,6 +3,14 @@ title: "Cybersecurity has a marketing problem."
 date: "2026-05-07"
 slug: "cybersecurity-marketing-problem"
 excerpt: "The industry sells $200,000 platforms to detect advanced persistent threats while the average enterprise still can't reliably tell you who has admin access to its finance system."
+visualType: "stat"
+visualAfter: "The unsexy stuff."
+stat: "94%"
+statLabel: "of breaches involved a human element or basic control failure"
+statContext: "Not zero-days. Not nation-state attackers. Misconfigured systems, stale credentials, unreviewed access."
+statSource: "Verizon Data Breach Investigations Report 2025"
+statSourceUrl: "https://www.verizon.com/business/resources/reports/dbir/"
+takeaway: "The most underrated skill in this field isn't deep technical expertise. It's the patience to keep doing the boring things, well, every quarter, forever."
 ---
 
 _Originally published on [LinkedIn](https://www.linkedin.com/in/atharvasardesai), May 7, 2026._

@@ -646,6 +646,12 @@ a:hover { color: var(--color-accent-hover); }
   color: var(--color-accent);
 }
 
+@media (max-width: 600px) {
+  .contrast-pair-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 @media (max-width: 640px) {
   .post-content-wrapper {
     padding: 0 20px;

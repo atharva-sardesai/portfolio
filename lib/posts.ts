@@ -7,6 +7,22 @@ export type Post = {
   slug: string
   excerpt: string
   body: string
+  visualType?: string
+  visualAfter?: string
+  stat?: string
+  statLabel?: string
+  statContext?: string
+  statSource?: string
+  statSourceUrl?: string
+  contrastLeftLabel?: string
+  contrastLeftValue?: string
+  contrastLeftSub?: string
+  contrastRightLabel?: string
+  contrastRightValue?: string
+  contrastRightSub?: string
+  contrastSource?: string
+  contrastSourceUrl?: string
+  takeaway?: string
 }
 
 const postsDirectory = path.join(process.cwd(), "content/posts")
@@ -38,6 +54,22 @@ function parseFrontmatter(fileContent: string): Post {
     slug: frontmatter.slug,
     excerpt: frontmatter.excerpt,
     body: match[2].trim(),
+    visualType: frontmatter.visualType,
+    visualAfter: frontmatter.visualAfter,
+    stat: frontmatter.stat,
+    statLabel: frontmatter.statLabel,
+    statContext: frontmatter.statContext,
+    statSource: frontmatter.statSource,
+    statSourceUrl: frontmatter.statSourceUrl,
+    contrastLeftLabel: frontmatter.contrastLeftLabel,
+    contrastLeftValue: frontmatter.contrastLeftValue,
+    contrastLeftSub: frontmatter.contrastLeftSub,
+    contrastRightLabel: frontmatter.contrastRightLabel,
+    contrastRightValue: frontmatter.contrastRightValue,
+    contrastRightSub: frontmatter.contrastRightSub,
+    contrastSource: frontmatter.contrastSource,
+    contrastSourceUrl: frontmatter.contrastSourceUrl,
+    takeaway: frontmatter.takeaway,
   }
 }
 

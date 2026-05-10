@@ -3,6 +3,15 @@ title: "Most developers think a security architecture review is about finding vu
 date: "2026-05-08"
 slug: "security-architecture-review"
 excerpt: "By the time you're looking for vulnerabilities, the expensive decisions have already been made."
+visualType: "contrast"
+visualAfter: "The difference is the same as the difference between a structural engineer reviewing blueprints and one reviewing a building that's already been constructed. One changes a line on a drawing. The other involves demolition."
+contrastLeftLabel: "How most reviews happen"
+contrastLeftValue: "After the build"
+contrastLeftSub: "Looped in at 'we're almost done' — findings become rework across 4+ systems"
+contrastRightLabel: "How they should happen"
+contrastRightValue: "Before the build"
+contrastRightSub: "Looped in at 'we're about to start' — findings change a line on a drawing"
+takeaway: "The most expensive security debt in most enterprises wasn't introduced by an attacker. It was scheduled into a sprint."
 ---
 
 _Originally published on [LinkedIn](https://www.linkedin.com/in/atharvasardesai), May 8, 2026._

@@ -1,5 +1,8 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import { ContrastPair } from "@/components/ContrastPair"
+import { KeyTakeaway } from "@/components/KeyTakeaway"
+import { StatCallout } from "@/components/StatCallout"
 import { formatPostDate, getAllPosts, getPostBySlug, markdownToHtml } from "@/lib/posts"
 
 export function generateStaticParams() {
@@ -33,6 +36,54 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 }
 
+function renderPostVisual(post: NonNullable<ReturnType<typeof getPostBySlug>>) {
+  if (post.visualType === "stat" && post.stat && post.statLabel && post.statSource) {
+    return (
+      <StatCallout
+        stat={post.stat}
+        label={post.statLabel}
+        context={post.statContext}
+        source={post.statSource}
+        sourceUrl={post.statSourceUrl}
+      />
+    )
+  }
+
+  if (
+    post.visualType === "contrast" &&
+    post.contrastLeftLabel &&
+    post.contrastLeftValue &&
+    post.contrastRightLabel &&
+    post.contrastRightValue
+  ) {
+    return (
+      <ContrastPair
+        leftLabel={post.contrastLeftLabel}
+        leftValue={post.contrastLeftValue}
+        leftSub={post.contrastLeftSub}
+        rightLabel={post.contrastRightLabel}
+        rightValue={post.contrastRightValue}
+        rightSub={post.contrastRightSub}
+        source={post.contrastSource}
+        sourceUrl={post.contrastSourceUrl}
+      />
+    )
+  }
+
+  return null
+}
+
+function renderPostBody(post: NonNullable<ReturnType<typeof getPostBySlug>>) {
+  const blocks = post.body.split(/\n{2,}/)
+
+  return blocks.map((block, index) => (
+    <div key={`${post.slug}-${index}`}>
+      <div dangerouslySetInnerHTML={{ __html: markdownToHtml(block) }} />
+      {post.visualAfter === block.trim() && renderPostVisual(post)}
+    </div>
+  ))
+}
+
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const post = getPostBySlug(slug)
@@ -58,7 +109,12 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           <span className="post-meta-dot" />
           <span>{readTime} min read</span>
         </div>
-        <div className="post-body" dangerouslySetInnerHTML={{ __html: markdownToHtml(post.body) }} />
+        <div className="post-body">
+          {renderPostBody(post)}
+        </div>
+        {post.takeaway && (
+          <KeyTakeaway text={post.takeaway} />
+        )}
         {otherPosts.length > 0 && (
           <div className="more-writing">
             <span className="more-writing-label">
