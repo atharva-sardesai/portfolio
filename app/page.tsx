@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Linkedin, Twitter } from "lucide-react"
+import { ObservationStrip } from "@/components/ObservationStrip"
 
 export default async function HomePage() {
   return (
@@ -40,6 +41,7 @@ export default async function HomePage() {
                   </svg>
                 </Link>
               </div>
+              <ObservationStrip />
             </div>
 
             <div className="hero-right">

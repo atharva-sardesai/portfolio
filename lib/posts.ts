@@ -1,0 +1,77 @@
+import fs from "fs"
+import path from "path"
+
+export type Post = {
+  title: string
+  date: string
+  slug: string
+  excerpt: string
+  body: string
+}
+
+const postsDirectory = path.join(process.cwd(), "content/posts")
+
+function parseFrontmatter(fileContent: string): Post {
+  const match = fileContent.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)
+
+  if (!match) {
+    throw new Error("Post is missing frontmatter")
+  }
+
+  const frontmatter = match[1].split("\n").reduce<Record<string, string>>((fields, line) => {
+    const separatorIndex = line.indexOf(":")
+
+    if (separatorIndex === -1) {
+      return fields
+    }
+
+    const key = line.slice(0, separatorIndex).trim()
+    const value = line.slice(separatorIndex + 1).trim().replace(/^"|"$/g, "")
+
+    fields[key] = value
+    return fields
+  }, {})
+
+  return {
+    title: frontmatter.title,
+    date: frontmatter.date,
+    slug: frontmatter.slug,
+    excerpt: frontmatter.excerpt,
+    body: match[2].trim(),
+  }
+}
+
+export function getAllPosts() {
+  return fs
+    .readdirSync(postsDirectory)
+    .filter((fileName) => fileName.endsWith(".md"))
+    .map((fileName) => {
+      const filePath = path.join(postsDirectory, fileName)
+      return parseFrontmatter(fs.readFileSync(filePath, "utf8"))
+    })
+    .sort((a, b) => b.date.localeCompare(a.date))
+}
+
+export function getPostBySlug(slug: string) {
+  return getAllPosts().find((post) => post.slug === slug)
+}
+
+export function markdownToHtml(markdown: string) {
+  return markdown
+    .split(/\n{2,}/)
+    .map((block) => {
+      if (block.trim() === "---") {
+        return "<hr />"
+      }
+
+      const html = block
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+        .replace(/_([^_]+)_/g, "<em>$1</em>")
+
+      return `<p>${html}</p>`
+    })
+    .join("\n")
+}
