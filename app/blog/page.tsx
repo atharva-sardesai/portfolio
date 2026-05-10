@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import type { Metadata } from "next"
-import { getAllPosts } from "@/lib/posts"
+import { formatPostDate, getAllPosts } from "@/lib/posts"
 
 export const metadata: Metadata = {
   title: "Writing",
@@ -43,7 +43,7 @@ export default function BlogPage() {
               <h2 className="post-item-title">{post.title}</h2>
               <p className="post-item-excerpt">{post.excerpt}</p>
             </div>
-            <time className="post-item-date" dateTime={post.date}>{post.date}</time>
+            <time className="post-item-date" dateTime={post.date}>{formatPostDate(post.date)}</time>
           </Link>
         ))}
       </div>

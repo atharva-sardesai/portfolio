@@ -56,6 +56,14 @@ export function getPostBySlug(slug: string) {
   return getAllPosts().find((post) => post.slug === slug)
 }
 
+export function formatPostDate(date: string) {
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  })
+}
+
 export function markdownToHtml(markdown: string) {
   return markdown
     .split(/\n{2,}/)
