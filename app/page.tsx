@@ -53,10 +53,10 @@ export default async function HomePage() {
                   priority
                 />
                 <div className="hero-card-rule" />
-                <p className="hero-card-label">Enterprise Security</p>
-                <p className="hero-card-topics">Enterprise risk<br />Cyber strategy</p>
+                <p className="hero-card-label">Writing on</p>
+                <p className="hero-card-topics">Enterprise Risk &{" "}<br />Cyber Strategy</p>
                 <div className="hero-card-rule" />
-                <p className="hero-card-meta">Atharva Sardesai</p>
+                <p className="hero-card-meta">Based in Pune, India</p>
               </div>
             </div>
           </div>
@@ -64,7 +64,7 @@ export default async function HomePage() {
           <div className="hero-divider" />
         </section>
 
-        <section id="about" className="about-section">
+        <section id="about" className="about-section" style={{ backgroundColor: "#1C1917" }}>
           <div className="about-inner">
             <span className="section-eyebrow" style={{ color: "var(--color-dark-muted)", borderColor: "var(--color-dark-border)" }}>
               About
@@ -123,7 +123,7 @@ export default async function HomePage() {
           </div>
         </section>
       </main>
-      <footer id="contact">
+      <footer id="contact" style={{ backgroundColor: "#1C1917" }}>
         <div className="footer-inner">
           <div className="footer-top">
             <div className="footer-brand">
