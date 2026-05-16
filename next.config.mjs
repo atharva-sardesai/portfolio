@@ -34,6 +34,17 @@ const nextConfig = {
         destination: "https://atharvasardesai.com/:path*",
         permanent: true,
       },
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "www.cyberwithatharva.com",
+          },
+        ],
+        destination: "https://atharvasardesai.com/:path*",
+        permanent: true,
+      },
     ]
   },
 }

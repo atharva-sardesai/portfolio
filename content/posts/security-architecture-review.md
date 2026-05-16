@@ -3,6 +3,7 @@ title: "Most developers think a security architecture review is about finding vu
 date: "2026-05-08"
 slug: "security-architecture-review"
 excerpt: "By the time you're looking for vulnerabilities, the expensive decisions have already been made."
+pillar: "macro-impact"
 visualType: "contrast"
 visualAfter: "The difference is the same as the difference between a structural engineer reviewing blueprints and one reviewing a building that's already been constructed. One changes a line on a drawing. The other involves demolition."
 contrastLeftLabel: "How most reviews happen"

@@ -1,7 +1,8 @@
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import type { Metadata } from "next"
 import { formatPostDate, getAllPosts } from "@/lib/posts"
+import { BlogPostList } from "@/components/BlogPostList"
+import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Writing",
@@ -18,7 +19,14 @@ export const metadata: Metadata = {
 }
 
 export default function BlogPage() {
-  const posts = getAllPosts()
+  const posts = getAllPosts().map((post) => ({
+    title: post.title,
+    slug: post.slug,
+    excerpt: post.excerpt,
+    date: post.date,
+    formattedDate: formatPostDate(post.date),
+    pillar: post.pillar,
+  }))
 
   return (
     <div className="container py-10">
@@ -36,17 +44,7 @@ export default function BlogPage() {
           </Link>
         </Button>
       </div>
-      <div className="post-list">
-        {posts.map((post) => (
-          <Link key={post.slug} href={`/blog/${post.slug}`} className="post-item">
-            <div>
-              <h2 className="post-item-title">{post.title}</h2>
-              <p className="post-item-excerpt">{post.excerpt}</p>
-            </div>
-            <time className="post-item-date" dateTime={post.date}>{formatPostDate(post.date)}</time>
-          </Link>
-        ))}
-      </div>
+      <BlogPostList posts={posts} />
     </div>
   )
 }

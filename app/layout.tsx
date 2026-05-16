@@ -4,6 +4,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
 import Navbar from "@/components/Navbar"
+import { GoogleAnalytics } from "@/components/GoogleAnalytics"
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -26,6 +27,8 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono",
   display: "swap",
 })
+
+const gaId = process.env.NEXT_PUBLIC_GA_ID
 
 export const metadata: Metadata = {
   title: {
@@ -74,6 +77,9 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://atharvasardesai.com'),
   alternates: {
     canonical: "/",
+    types: {
+      "application/rss+xml": "https://atharvasardesai.com/feed.xml",
+    },
   },
 }
 
@@ -92,6 +98,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
           <Navbar />
           <main>
             {children}

@@ -6,6 +6,7 @@ export type Post = {
   date: string
   slug: string
   excerpt: string
+  pillar?: "macro-impact" | "compliance-theater" | "business-language"
   body: string
   visualType?: string
   visualAfter?: string
@@ -53,6 +54,7 @@ function parseFrontmatter(fileContent: string): Post {
     date: frontmatter.date,
     slug: frontmatter.slug,
     excerpt: frontmatter.excerpt,
+    pillar: frontmatter.pillar as Post["pillar"],
     body: match[2].trim(),
     visualType: frontmatter.visualType,
     visualAfter: frontmatter.visualAfter,

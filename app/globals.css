@@ -444,6 +444,50 @@ a:hover { color: var(--color-accent-hover); }
   padding-bottom: 2px;
 }
 
+.writing-controls {
+  max-width: var(--max-width);
+  margin: 40px auto 0;
+  padding: 0 28px;
+}
+
+.pillar-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.pillar-filters button {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 0 0 3px;
+}
+
+.pillar-filters button:hover,
+.pillar-filters button.active {
+  border-color: var(--color-accent);
+  color: var(--color-text-primary);
+}
+
+.writing-search {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-primary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 12px 14px;
+}
+
+.writing-search::placeholder {
+  color: var(--color-text-tertiary);
+}
+
 .post-list { margin-top: 40px; }
 
 .post-item {
@@ -482,6 +526,13 @@ a:hover { color: var(--color-accent-hover); }
   color: var(--color-text-tertiary);
   white-space: nowrap;
   padding-top: 4px;
+}
+
+.post-empty-state {
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  padding: 32px 0;
 }
 
 .blog-post-shell {

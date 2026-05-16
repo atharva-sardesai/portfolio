@@ -28,10 +28,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: post.title,
       description: post.excerpt,
       url: `https://atharvasardesai.com/blog/${post.slug}`,
+      type: "article",
+      publishedTime: post.date,
+      authors: ["Atharva Sardesai"],
     },
     twitter: {
+      card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
+    },
+    alternates: {
+      canonical: `https://atharvasardesai.com/blog/${post.slug}`,
     },
   }
 }
