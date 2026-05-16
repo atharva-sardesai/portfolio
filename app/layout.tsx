@@ -28,7 +28,7 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 })
 
-const gaId = process.env.NEXT_PUBLIC_GA_ID
+const gaId = process.env.NEXT_PUBLIC_GA_ID || (process.env.NODE_ENV === "production" ? "G-6NQK2EHKG9" : undefined)
 
 export const metadata: Metadata = {
   title: {
